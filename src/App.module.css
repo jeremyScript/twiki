@@ -1,3 +1,19 @@
-.app {
-  color: blue;
+* > * {
+  margin-top: 1rem;
+}
+
+.code-editor {
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+}
+
+.code-cell {
+  height: 5rem;
+  padding: 1rem;
+}
+
+.code-editor button {
+  align-self: end;
+  width: 5rem;
 }
