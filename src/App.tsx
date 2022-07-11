@@ -2,28 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import * as esbuild from "esbuild-wasm";
 
 import styles from "./App.module.css";
+import { unpkgPlugin } from "./plugins/unpkg-plugin";
 
 function App() {
   const codeRef = useRef<HTMLTextAreaElement>(null);
   const serviceRef = useRef<any>(null);
   const [output, setOutput] = useState("");
-
-  const handleClickSubmit = async () => {
-    if (codeRef.current) {
-      if (!serviceRef.current) {
-        return;
-      } else {
-        const result = await serviceRef.current.transform(
-          codeRef.current.value,
-          {
-            loader: "tsx",
-            target: "es2015",
-          }
-        );
-        setOutput(result.code);
-      }
-    }
-  };
 
   const startService = async () => {
     try {
@@ -40,6 +24,29 @@ function App() {
     startService();
   }, []);
 
+  const handleClickSubmit = async () => {
+    if (codeRef.current) {
+      if (!serviceRef.current) {
+        return;
+      } else {
+        const result = await serviceRef.current.build({
+          entryPoints: ["index.js"],
+          bundle: true,
+          write: false,
+          plugins: [unpkgPlugin],
+        });
+        setOutput(result.code);
+      }
+    }
+  };
+
+  const handleFocus = () => {
+    if (!codeRef.current) return;
+    if (codeRef.current.value === "Enter code here") {
+      codeRef.current.value = "";
+    }
+  };
+
   return (
     <div>
       <div className={styles["code-editor"]}>
@@ -47,6 +54,7 @@ function App() {
           className={styles["code-cell"]}
           defaultValue={"Enter code here"}
           ref={codeRef}
+          onFocus={handleFocus}
         />
         <button onClick={handleClickSubmit}>Submit</button>
       </div>
