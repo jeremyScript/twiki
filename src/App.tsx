@@ -5,21 +5,32 @@ import styles from "./App.module.css";
 
 function App() {
   const codeRef = useRef<HTMLTextAreaElement>(null);
+  const serviceRef = useRef<any>(null);
   const [output, setOutput] = useState("");
 
-  const handleClickSubmit = () => {
+  const handleClickSubmit = async () => {
     if (codeRef.current) {
-      setOutput(codeRef.current.value);
+      if (!serviceRef.current) {
+        return;
+      } else {
+        const result = await serviceRef.current.transform(
+          codeRef.current.value,
+          {
+            loader: "tsx",
+            target: "es2015",
+          }
+        );
+        setOutput(result.code);
+      }
     }
   };
 
   const startService = async () => {
     try {
-      const service = await esbuild.startService({
+      serviceRef.current = await esbuild.startService({
         worker: true,
         wasmURL: "https://unpkg.com/esbuild-wasm@0.8.57/esbuild.wasm",
       });
-      console.log(service ? "esbuild initialized" : "");
     } catch (err) {
       console.log(err);
     }
