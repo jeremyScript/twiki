@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import * as esbuild from "esbuild-wasm";
 
 import styles from "./App.module.css";
 
@@ -11,6 +12,22 @@ function App() {
       setOutput(codeRef.current.value);
     }
   };
+
+  const startService = async () => {
+    try {
+      const service = await esbuild.startService({
+        worker: true,
+        wasmURL: "https://unpkg.com/esbuild-wasm@0.8.57/esbuild.wasm",
+      });
+      console.log(service ? "esbuild initialized" : "");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    startService();
+  }, []);
 
   return (
     <div>
