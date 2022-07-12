@@ -35,11 +35,11 @@ export const unpkgPlugin = (inputCode: string) => ({
       } else {
         const moduleUrl = new URL(args.path, "https://www.unpkg.com/").href;
         const { data, request } = await axios.get(moduleUrl);
-        console.log("request", request);
+        const resolveDir = new URL("./", request.responseURL).pathname;
         return {
           contents: data,
           loader: "tsx",
-          resolveDir: args.path,
+          resolveDir,
         };
       }
     });
