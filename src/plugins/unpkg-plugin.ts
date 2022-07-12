@@ -9,10 +9,11 @@ export const unpkgPlugin = (inputCode: string) => ({
       namespace: "a",
     }));
 
-    build.onLoad({ filter: /^index\.tsx$/ }, () => {
+    build.onResolve({ filter: /^\.\/*/ }, (args) => {
+      const moduleUrl = args.resolveDir + "/" + args.path.replace(".", "");
       return {
-        contents: inputCode,
-        loader: "tsx",
+        path: moduleUrl,
+        namespace: "b",
       };
     });
 
@@ -23,14 +24,21 @@ export const unpkgPlugin = (inputCode: string) => ({
       };
     });
 
-    build.onLoad({ filter: /^[a-z]+[-]*[a-z-]*$/ }, async (args) => {
-      const pkgUrl = "https://www.unpkg.com/" + args.path;
-      const { data } = await axios.get(pkgUrl);
-
-      return {
-        contents: data,
-        loader: "tsx",
-      };
+    build.onLoad({ filter: /.*/ }, async (args) => {
+      if (args.path === "index.tsx") {
+        return {
+          contents: inputCode,
+          loader: "tsx",
+        };
+      } else {
+        const moduleUrl = new URL(args.path, "https://www.unpkg.com/").href;
+        const { data } = await axios.get(moduleUrl);
+        return {
+          contents: data,
+          loader: "tsx",
+          resolveDir: args.path,
+        };
+      }
     });
   },
 });
