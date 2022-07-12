@@ -30,12 +30,12 @@ function App() {
         return;
       } else {
         const result = await serviceRef.current.build({
-          entryPoints: ["index.js"],
+          entryPoints: ["index.tsx"],
           bundle: true,
           write: false,
-          plugins: [unpkgPlugin],
+          plugins: [unpkgPlugin(codeRef.current.value)],
         });
-        setOutput(result.code);
+        setOutput(result.outputFiles[0].text);
       }
     }
   };
