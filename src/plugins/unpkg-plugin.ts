@@ -10,7 +10,9 @@ export const unpkgPlugin = (inputCode: string) => ({
     }));
 
     build.onResolve({ filter: /^\.\/*/ }, (args) => {
-      const moduleUrl = args.resolveDir + "/" + args.path.replace(".", "");
+      const regex = /\.+\/*/;
+      const moduleUrl = args.resolveDir + "/" + args.path.replace(regex, "");
+      console.log(moduleUrl);
       return {
         path: moduleUrl,
         namespace: "b",
@@ -32,7 +34,8 @@ export const unpkgPlugin = (inputCode: string) => ({
         };
       } else {
         const moduleUrl = new URL(args.path, "https://www.unpkg.com/").href;
-        const { data } = await axios.get(moduleUrl);
+        const { data, request } = await axios.get(moduleUrl);
+        console.log("request", request);
         return {
           contents: data,
           loader: "tsx",
