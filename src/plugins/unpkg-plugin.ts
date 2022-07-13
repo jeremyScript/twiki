@@ -1,12 +1,21 @@
-import * as esbuild from "esbuild-wasm";
-import { OnResolveArgs, OnLoadArgs } from "esbuild-wasm";
+import {
+  PluginBuild,
+  OnResolveArgs,
+  OnLoadArgs,
+  OnLoadResult,
+} from "esbuild-wasm";
+import localforage from "localforage";
 import axios from "axios";
+
+const moduleCache = localforage.createInstance({
+  name: "moduleCache",
+});
 
 const pkgUrl = "https://unpkg.com";
 
 export const unpkgPlugin = (inputCode: string) => ({
   name: "unpkg-plugin",
-  setup(build: esbuild.PluginBuild) {
+  setup(build: PluginBuild) {
     build.onResolve({ filter: /^index\.tsx$/ }, () => ({
       path: "index.tsx",
       namespace: "a",
@@ -30,12 +39,19 @@ export const unpkgPlugin = (inputCode: string) => ({
     }));
 
     build.onLoad({ filter: /.*/ }, async (args: OnLoadArgs) => {
-      const { data, request } = await axios.get(args.path);
-      return {
-        loader: "tsx",
-        contents: data,
-        resolveDir: new URL("./", request.responseURL).pathname,
-      };
+      const cachedResult = await moduleCache.getItem<OnLoadResult>(args.path);
+      if (cachedResult) {
+        return cachedResult;
+      } else {
+        const { data, request } = await axios.get(args.path);
+        const result: OnLoadResult = {
+          loader: "tsx",
+          contents: data,
+          resolveDir: new URL("./", request.responseURL).pathname,
+        };
+        await moduleCache.setItem(args.path, result);
+        return result;
+      }
     });
   },
 });
