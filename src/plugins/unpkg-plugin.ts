@@ -12,7 +12,6 @@ export const unpkgPlugin = (inputCode: string) => ({
     build.onResolve({ filter: /^\.\/*/ }, (args) => {
       const regex = /\.+\/*/;
       const moduleUrl = args.resolveDir + "/" + args.path.replace(regex, "");
-      console.log(moduleUrl);
       return {
         path: moduleUrl,
         namespace: "b",
