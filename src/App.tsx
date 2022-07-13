@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import * as esbuild from "esbuild-wasm";
 
 import styles from "./App.module.css";
-import { unpkgPlugin } from "./plugins/unpkg-plugin";
+import { unpkgResolvePlugin } from "./plugins/unpkg-resolve-plugin";
+import { unpkgLoadPlugin } from "./plugins/unpkg-load-plugin";
 
 function App() {
   const codeRef = useRef<HTMLTextAreaElement>(null);
@@ -34,7 +35,7 @@ function App() {
           entryPoints: ["index.tsx"],
           bundle: true,
           write: false,
-          plugins: [unpkgPlugin(codeRef.current.value)],
+          plugins: [unpkgResolvePlugin, unpkgLoadPlugin(codeRef.current.value)],
           define: {
             "process.env.NODE_ENV": '"production"',
             global: "window",
