@@ -34,6 +34,10 @@ function App() {
           bundle: true,
           write: false,
           plugins: [unpkgPlugin(codeRef.current.value)],
+          define: {
+            "process.env.NODE_ENV": '"production"',
+            global: "window",
+          },
         });
         setOutput(result.outputFiles[0].text);
       }
