@@ -21,7 +21,8 @@ function App() {
   };
 
   useEffect(() => {
-    startService();
+    const initialize = async () => await startService();
+    initialize();
   }, []);
 
   const handleClickSubmit = async () => {
