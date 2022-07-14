@@ -5,10 +5,11 @@ import styles from "./App.module.css";
 import { unpkgResolvePlugin } from "./plugins/unpkg-resolve-plugin";
 import { unpkgLoadPlugin } from "./plugins/unpkg-load-plugin";
 import Preview from "./components/Preview";
+import CodeEditor from "./components/CodeEditor";
 
 function App() {
-  const codeRef = useRef<HTMLTextAreaElement>(null);
   const serviceRef = useRef<any>(null);
+  const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
 
   const startService = async () => {
@@ -27,44 +28,34 @@ function App() {
     initialize();
   }, []);
 
-  const handleClickSubmit = async () => {
-    if (codeRef.current) {
-      if (!serviceRef.current) {
-        return;
-      } else {
-        const result = await serviceRef.current.build({
-          entryPoints: ["index.tsx"],
-          bundle: true,
-          write: false,
-          plugins: [unpkgResolvePlugin, unpkgLoadPlugin(codeRef.current.value)],
-          define: {
-            "process.env.NODE_ENV": '"production"',
-            global: "window",
-          },
-        });
-        setOutput(result.outputFiles[0].text);
-      }
-    }
+  const handleInputChange = (inputCode: string) => {
+    setInput(inputCode);
   };
 
-  const handleFocus = () => {
-    if (!codeRef.current) return;
-    if (codeRef.current.value === "Enter code here") {
-      codeRef.current.value = "";
-    }
+  const handleClickSubmit = async () => {
+    if (!serviceRef.current) return;
+    const result = await serviceRef.current.build({
+      entryPoints: ["index.tsx"],
+      bundle: true,
+      write: false,
+      plugins: [unpkgResolvePlugin, unpkgLoadPlugin(input)],
+      define: {
+        "process.env.NODE_ENV": '"production"',
+        global: "window",
+      },
+    });
+    setOutput(result.outputFiles[0].text);
   };
 
   return (
     <div>
       <div className={styles["code-editor"]}>
-        <textarea
-          className={styles["code-cell"]}
-          defaultValue={"Enter code here"}
-          ref={codeRef}
-          onFocus={handleFocus}
-        />
         <button onClick={handleClickSubmit}>Submit</button>
       </div>
+      <CodeEditor
+        initialValue="const a = 123;"
+        handleInputChange={handleInputChange}
+      />
       <Preview code={output} />
       <pre className={styles["result-cell"]}>
         {">> "}
