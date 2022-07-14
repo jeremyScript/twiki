@@ -24,7 +24,13 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
           alert('fail');
           return;
         };
-        eval(event.data);
+        try {
+          eval(event.data);
+        } catch (err) {
+          const root = document.getElementById('root');
+          root.innerHTML = '<div><h4 style="color: red; margin: 1em 0">Runtime Error</h4>' + err + '</div>';
+          console.error(err);
+        }
       });
     </script>
   </body>
