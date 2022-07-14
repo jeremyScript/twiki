@@ -52,6 +52,7 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
 
   return (
     <iframe
+      className={styles.preview}
       title="iframe"
       ref={iframRef}
       srcDoc={html}
