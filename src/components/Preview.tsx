@@ -38,12 +38,17 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
   `;
 
   useEffect(() => {
+    // To reset to iframe's initial content
+    if (iframRef.current) {
+      iframRef.current.srcdoc = html;
+    }
+
     const post = setTimeout(() => {
       iframRef.current?.contentWindow?.postMessage(code, "*");
     }, 50);
 
     return () => clearTimeout(post);
-  }, [code]);
+  }, [code, html]);
 
   return (
     <iframe
