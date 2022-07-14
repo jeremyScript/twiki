@@ -65,7 +65,7 @@ function App() {
         />
         <button onClick={handleClickSubmit}>Submit</button>
       </div>
-      <Preview code="hi" />
+      <Preview code={output} />
       <pre className={styles["result-cell"]}>
         {">> "}
         {output}
