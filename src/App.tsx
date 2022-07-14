@@ -4,6 +4,7 @@ import * as esbuild from "esbuild-wasm";
 import styles from "./App.module.css";
 import { unpkgResolvePlugin } from "./plugins/unpkg-resolve-plugin";
 import { unpkgLoadPlugin } from "./plugins/unpkg-load-plugin";
+import Preview from "./components/Preview";
 
 function App() {
   const codeRef = useRef<HTMLTextAreaElement>(null);
@@ -64,6 +65,7 @@ function App() {
         />
         <button onClick={handleClickSubmit}>Submit</button>
       </div>
+      <Preview code="hi" />
       <pre className={styles["result-cell"]}>
         {">> "}
         {output}
