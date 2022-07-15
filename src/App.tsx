@@ -19,7 +19,7 @@ function App() {
         wasmURL: "https://unpkg.com/esbuild-wasm@0.8.57/esbuild.wasm",
       });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
