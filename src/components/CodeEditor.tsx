@@ -25,7 +25,18 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     handleInputChange(value as string);
   };
 
-  const handleFormatButtonClick = () => {};
+  const handleFormatButtonClick = () => {
+    const original = editorRef?.current.getValue();
+    const formatted = prettier.format(original, {
+      parser: "babel",
+      plugins: [parser],
+      useTabs: false,
+      semi: true,
+      singleQuote: true,
+    });
+
+    editorRef.current.setValue(formatted);
+  };
 
   return (
     <div className={styles["editor-wrapper"]}>
