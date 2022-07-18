@@ -17,9 +17,17 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
   const [ratio, setRatio] = useState(0.5);
 
   useEffect(() => {
+    let timeout: any;
+
     const windowSizeChangeListener = () => {
-      setWindowWidth(window.innerWidth);
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+      timeout = setTimeout(() => {
+        setWindowWidth(window.innerWidth);
+      }, 100);
     };
+
     window.addEventListener("resize", windowSizeChangeListener);
 
     return () => {
