@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import bundle from "../bundler";
 import Preview from "./Preview";
 import CodeEditor from "./CodeEditor";
+import Resizable from "./Resizable";
+
+import styles from "./CodeCell.module.css";
 
 const CodeCell = () => {
   const [input, setInput] = useState("");
@@ -12,26 +15,24 @@ const CodeCell = () => {
     setInput(inputCode);
   };
 
-  const handleClickSubmit = async () => {
-    const bundled = await bundle(input);
-    setOutput(bundled);
-  };
+  // const handleClickSubmit = async () => {
+  //   const bundled = await bundle(input);
+  //   setOutput(bundled);
+  // };
 
   return (
-    <div>
-      <div>
-        <button onClick={handleClickSubmit}>Submit</button>
+    <Resizable direction="vertical">
+      <div className={styles["code-cell"]}>
+        {/* <div>
+          <button onClick={handleClickSubmit}>Submit</button>
+        </div> */}
+        <CodeEditor
+          initialValue="const a = 123;"
+          handleInputChange={handleInputChange}
+        />
+        <Preview code={output} />
       </div>
-      <CodeEditor
-        initialValue="const a = 123;"
-        handleInputChange={handleInputChange}
-      />
-      <Preview code={output} />
-      <pre>
-        {">> "}
-        {output}
-      </pre>
-    </div>
+    </Resizable>
   );
 };
 

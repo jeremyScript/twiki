@@ -13,3 +13,16 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #fff;
 }
+
+/* To override Resizable */
+
+.react-resizable-handle {
+  display: block;
+  background-color: red;
+}
+
+.react-resizable-handle-s {
+  height: 10px;
+  width: 100%;
+  cursor: row-resize;
+}
