@@ -26,10 +26,12 @@ const CodeCell = () => {
         {/* <div>
           <button onClick={handleClickSubmit}>Submit</button>
         </div> */}
-        <CodeEditor
-          initialValue="const a = 123;"
-          handleInputChange={handleInputChange}
-        />
+        <Resizable direction="horizontal">
+          <CodeEditor
+            initialValue="const a = 123;"
+            handleInputChange={handleInputChange}
+          />
+        </Resizable>
         <Preview code={output} />
       </div>
     </Resizable>
