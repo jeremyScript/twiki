@@ -1,5 +1,21 @@
+.preview-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.preview-wrapper:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+}
+
 .preview {
+  height: 100%;
   width: 100%;
-  background-color: bisque;
-  border: 2px solid #000;
+  background-color: #fff;
+  border: 1px solid #000;
 }

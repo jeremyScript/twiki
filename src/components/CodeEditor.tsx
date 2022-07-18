@@ -50,9 +50,9 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
         value={initialValue}
         onMount={handleEditorMount}
         onChange={handleEditorChange}
-        height="500px"
         theme="vs-dark"
         language="javascript"
+        height="100%"
         options={{
           automaticLayout: true,
           folding: false,
