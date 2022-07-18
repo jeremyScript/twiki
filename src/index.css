@@ -18,11 +18,17 @@ body {
 
 .react-resizable-handle {
   display: block;
-  background-color: red;
+  background-color: #569cd6;
 }
 
 .react-resizable-handle-s {
-  height: 10px;
   width: 100%;
+  height: 10px;
   cursor: row-resize;
+}
+
+.react-resizable-handle-e {
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
 }
