@@ -11,7 +11,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #fff;
+  background-color: #22272e;
 }
 
 /* To override Resizable */
@@ -23,23 +23,22 @@ body {
 .react-resizable-handle {
   position: absolute;
   display: block;
-  background-color: #569cd6;
-  /* background-color: palevioletred; */
+  background-color: crimson;
   opacity: 0;
-  transition: opacity 200ms;
+  transition: opacity 300ms;
 }
 
 .react-resizable-handle-s {
   bottom: 0;
   width: 100%;
-  height: 5px;
+  height: 3px;
   cursor: row-resize;
 }
 
 .react-resizable-handle-e {
   top: 0;
   right: 0;
-  width: 5px;
+  width: 3px;
   height: 100%;
   cursor: col-resize;
 }
