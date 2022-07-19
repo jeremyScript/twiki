@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import bundle from "../bundler";
 import Preview from "./Preview";
@@ -15,17 +15,20 @@ const CodeCell = () => {
     setInput(inputCode);
   };
 
-  // const handleClickSubmit = async () => {
-  //   const bundled = await bundle(input);
-  //   setOutput(bundled);
-  // };
+  useEffect(() => {
+    const bundler = setTimeout(async () => {
+      const bundled = await bundle(input);
+      setOutput(bundled);
+    }, 1000);
+
+    return () => {
+      clearTimeout(bundler);
+    };
+  }, [input]);
 
   return (
     <Resizable direction="vertical">
       <div className={styles["code-cell"]}>
-        {/* <div>
-          <button onClick={handleClickSubmit}>Submit</button>
-        </div> */}
         <Resizable direction="horizontal">
           <CodeEditor
             initialValue="const a = 123;"
