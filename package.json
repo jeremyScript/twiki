@@ -13,6 +13,7 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/react-resizable": "^3.0.1",
+    "@uiw/react-md-editor": "^3.14.5",
     "axios": "^0.27.2",
     "esbuild-wasm": "0.8.57",
     "localforage": "^1.10.0",
