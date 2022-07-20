@@ -1,6 +1,4 @@
-.code-cell {
-  display: flex;
-  height: 100%;
+.text-editor {
   border: 1px solid #4e5d6c;
   border-radius: 5px;
   overflow: hidden;
