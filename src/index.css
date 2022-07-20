@@ -12,9 +12,10 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #22272e;
+  padding: 1rem;
 }
 
-/* To override Resizable */
+/* Override Resizable */
 
 .react-resizable {
   position: relative;
@@ -23,7 +24,8 @@ body {
 .react-resizable-handle {
   position: absolute;
   display: block;
-  background-color: crimson;
+  /* background-color: #ff4669; */
+  background-color: #569cd6;
   opacity: 0;
   transition: opacity 300ms;
 }
@@ -31,18 +33,62 @@ body {
 .react-resizable-handle-s {
   bottom: 0;
   width: 100%;
-  height: 3px;
+  height: 4px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   cursor: row-resize;
 }
 
 .react-resizable-handle-e {
   top: 0;
   right: 0;
-  width: 3px;
+  width: 4px;
   height: 100%;
   cursor: col-resize;
 }
 
 .react-resizable-handle:hover {
+  opacity: 1;
+}
+
+/* Override Monaco Editor */
+
+.monaco-editor-background .view-overlays div.current-line {
+  border: none;
+}
+
+.monaco-editor {
+  padding: 5px 0;
+}
+
+/* Override MDeditor */
+
+div.w-md-editor,
+div.w-md-editor-toolbar,
+div.wmde-markdown {
+  background-color: #1e1e1e;
+}
+
+div.wmde-markdown {
+  padding: 1rem;
+}
+
+div.w-md-editor-bar svg {
+  display: none;
+}
+
+div.w-md-editor-bar {
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  cursor: row-resize;
+  /* background-color: #ff4669; */
+  background-color: #569cd6;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+div.w-md-editor-bar:hover {
   opacity: 1;
 }

@@ -14,7 +14,7 @@ interface ResizableProps {
 
 const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [ratio, setRatio] = useState(0.5);
+  const [ratio, setRatio] = useState(0.4715);
 
   useEffect(() => {
     let timeout: any;

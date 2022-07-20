@@ -59,6 +59,10 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
           fontSize: 16,
           lineNumbersMinChars: 3,
           minimap: { enabled: false },
+          padding: {
+            top: 5,
+            bottom: 5,
+          },
           scrollBeyondLastLine: false,
           tabSize: 2,
           wordWrap: "on",
