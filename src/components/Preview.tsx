@@ -19,6 +19,17 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
   <body>
     <div id="root" />
     <script>
+      const handleError = (err) => {
+        const root = document.getElementById('root');
+        root.innerHTML = '<div style="margin: 1rem;"><h4 style="color: red;">Runtime Error</h4>' + err + '</div>';
+        console.error(err);
+      }
+
+      window.addEventListener('error', (event) => {
+        event.preventDefault();
+        handleError(event.error);
+      });
+
       window.addEventListener('message', (event) => {
         if (event.origin !== "http://localhost:3000") {
           alert('fail');
@@ -27,9 +38,7 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
         try {
           eval(event.data);
         } catch (err) {
-          const root = document.getElementById('root');
-          root.innerHTML = '<div><h4 style="color: red; margin: 1em 0">Runtime Error</h4>' + err + '</div>';
-          console.error(err);
+          handleError(err);
         }
       });
     </script>
