@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import bundle from "../bundler";
+import bundle from "../../bundler";
 import Preview from "./Preview";
 import CodeEditor from "./CodeEditor";
 import Resizable from "./Resizable";
