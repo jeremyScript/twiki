@@ -21,3 +21,9 @@
   background-color: #fcfcfc;
   border: none;
 }
+
+.bundling-error {
+  position: absolute;
+  top: 0;
+  margin: 1rem;
+}

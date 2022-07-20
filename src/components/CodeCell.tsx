@@ -10,6 +10,7 @@ import styles from "./CodeCell.module.css";
 const CodeCell = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [status, setStatus] = useState("");
 
   const handleInputChange = (inputCode: string) => {
     setInput(inputCode);
@@ -18,7 +19,8 @@ const CodeCell = () => {
   useEffect(() => {
     const bundler = setTimeout(async () => {
       const bundled = await bundle(input);
-      setOutput(bundled);
+      setOutput(bundled.code);
+      setStatus(bundled.bundlingStatus);
     }, 1000);
 
     return () => {
@@ -35,7 +37,7 @@ const CodeCell = () => {
             handleInputChange={handleInputChange}
           />
         </Resizable>
-        <Preview code={output} />
+        <Preview code={output} bundlingStatus={status} />
       </div>
     </Resizable>
   );
