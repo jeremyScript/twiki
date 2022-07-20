@@ -1,6 +1,4 @@
-import CodeCell from "./components/CodeCell";
-
-import styles from "./App.module.css";
+import CodeCell from "./components/code-cell/CodeCell";
 
 function App() {
   return (
