@@ -7,13 +7,26 @@
 .format-button {
   position: absolute;
   z-index: 100;
-  top: 0;
-  right: 0;
+  top: 12px;
+  right: 7px;
+  background-color: palevioletred;
+  color: #fefefe;
+  font-weight: 500;
+  border: 1px solid palevioletred;
+  border-radius: 1px;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 200ms;
+  transition: all 200ms;
 }
 
 .editor-wrapper:hover .format-button {
   opacity: 1;
+}
+
+.format-button:hover {
+  transform: scale(1.05);
+}
+
+.format-button:active {
+  transform: scale(0.95);
 }
