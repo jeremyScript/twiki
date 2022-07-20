@@ -19,19 +19,25 @@ const bundle = async (codeToBeBundled: string) => {
   if (!service) {
     await startService();
   }
+  try {
+    const bundled = await service.build({
+      entryPoints: ["index.tsx"],
+      bundle: true,
+      write: false,
+      define: {
+        "process.env.NODE_ENV": '"production"',
+        global: "window",
+      },
+      plugins: [unpkgResolvePlugin, unpkgLoadPlugin(codeToBeBundled)],
+    });
 
-  const bundled = await service.build({
-    entryPoints: ["index.tsx"],
-    bundle: true,
-    write: false,
-    define: {
-      "process.env.NODE_ENV": '"production"',
-      global: "window",
-    },
-    plugins: [unpkgResolvePlugin, unpkgLoadPlugin(codeToBeBundled)],
-  });
-
-  return bundled.outputFiles[0].text;
+    return { code: bundled.outputFiles[0].text, bundlingStatus: "" };
+  } catch (error: any) {
+    return {
+      code: "",
+      bundlingStatus: error.message,
+    };
+  }
 };
 
 export default bundle;
