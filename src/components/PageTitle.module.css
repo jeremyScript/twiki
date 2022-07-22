@@ -9,5 +9,11 @@
   width: 100%;
   padding: 1rem;
   font-size: 16px;
-  color: #fcfcfc;
+  color: var(--preview-background-color);
+  outline: none;
+}
+
+.title-input:focus {
+  background-color: var(--main-editor-background-color);
+  border: 1px solid var(--border-color--on-focus);
 }
