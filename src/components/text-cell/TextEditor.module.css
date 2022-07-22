@@ -1,5 +1,9 @@
 .text-editor {
-  border: 1px solid #4e5d6c;
-  border-radius: 5px;
+  border: 1px solid var(--main-border-color);
+  border-radius: var(--main-border-radius);
   overflow: hidden;
+}
+
+.text-editor:focus-within {
+  border: 1px solid var(--border-color--on-focus);
 }
