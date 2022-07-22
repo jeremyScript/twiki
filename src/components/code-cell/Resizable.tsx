@@ -14,7 +14,7 @@ interface ResizableProps {
 
 const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [ratio, setRatio] = useState(0.4715);
+  const [ratio, setRatio] = useState(0.5);
 
   useEffect(() => {
     let timeout: any;
@@ -45,7 +45,7 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
     resizableBoxProps = {
       onResize: handleResize,
       className: styles["resize-horizontal"],
-      width: windowWidth * ratio,
+      width: windowWidth * ratio - 23,
       height: Infinity,
       maxConstraints: [windowWidth * 0.75, Infinity],
       minConstraints: [windowWidth * 0.25, Infinity],

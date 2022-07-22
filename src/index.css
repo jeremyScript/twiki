@@ -1,6 +1,13 @@
 /* global styles */
 
 :root {
+  --main-background-color: #22272e;
+  --preview-background-color: #fcfcfc;
+  --resize-handle-color: #569cd6;
+  --main-border-color: #4e5d6c;
+
+  --main-border-radius: 5px;
+
   font-size: 16px;
   box-sizing: border-box;
 }
@@ -26,7 +33,7 @@ body {
 .react-resizable-handle {
   position: absolute;
   display: block;
-  background-color: #569cd6;
+  background-color: var(--resize-handle-color);
   opacity: 0;
   transition: opacity 300ms;
 }
@@ -62,6 +69,10 @@ body {
   padding: 5px 0;
 }
 
+.monaco-scrollable-element .decorationsOverviewRuler {
+  opacity: 0;
+}
+
 /* Override MDeditor styles */
 
 div.w-md-editor,
@@ -71,7 +82,7 @@ div.wmde-markdown {
 }
 
 div.wmde-markdown {
-  padding: 1rem 1.75rem;
+  padding: 1rem 1.25rem;
 }
 
 div.w-md-editor-text textarea,
@@ -88,7 +99,7 @@ div.w-md-editor-bar {
   width: 100%;
   height: 4px;
   cursor: row-resize;
-  background-color: #569cd6;
+  background-color: var(--resize-handle-color);
   border-radius: 5px;
   opacity: 0;
   transition: opacity 300ms;
@@ -96,4 +107,8 @@ div.w-md-editor-bar {
 
 div.w-md-editor-bar:hover {
   opacity: 1;
+}
+
+div.wmde-markdown .anchor {
+  display: none;
 }
