@@ -1,0 +1,10 @@
+.main {
+  background-color: var(--main-background-color);
+  border-radius: 10px;
+  padding: 1rem;
+  height: calc(100vh - 1rem);
+}
+
+.main > * + * {
+  margin-top: 1rem;
+}
