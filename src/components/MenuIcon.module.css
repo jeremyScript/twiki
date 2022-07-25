@@ -1,0 +1,16 @@
+.menu-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid grey;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-icon > div {
+  background-color: grey;
+  width: 90%;
+  height: 3px;
+}
