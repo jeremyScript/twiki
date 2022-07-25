@@ -8,11 +8,11 @@
   position: absolute;
   z-index: 100;
   top: 12px;
-  right: 7px;
+  right: 18px;
   background-color: palevioletred;
   border: 1px solid palevioletred;
   color: #fefefe;
-  border-radius: 1px;
+  border-radius: 3px;
   font-weight: 500;
   cursor: pointer;
   opacity: 0;
