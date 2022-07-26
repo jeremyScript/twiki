@@ -1,8 +1,8 @@
 import Header from "./components/header/Header";
 import CodeCell from "./components/code-cell/CodeCell";
-import PageTitle from "./components/PageTitle";
+import PageTitle from "./components//main/PageTitle";
 import TextEditor from "./components/text-cell/TextEditor";
-import Main from "./components/Main";
+import Main from "./components/main/Main";
 
 import styles from "./App.module.css";
 
