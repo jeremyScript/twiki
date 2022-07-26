@@ -2,13 +2,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #007acc;
-  background-color: #005ba4;
-  background-color: #f75c67;
   background-color: #525257;
   width: 100%;
   padding: 0.5rem;
-  z-index: 500;
 }
 
 .sliding-menu {
@@ -16,7 +12,7 @@
   top: 3rem;
   left: 0;
   width: 25vw;
-  /* display: none; */
+  z-index: 500;
 }
 
 .menu-contents {
@@ -36,6 +32,7 @@
 }
 
 .menu-contents button {
+  font-size: 1rem;
   width: 100%;
   padding: 0.5rem;
   background-color: #fcfcfc;
