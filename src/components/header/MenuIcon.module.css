@@ -1,29 +1,30 @@
 .menu-icon {
-  width: 2.25rem;
-  height: 2.25rem;
-  /* border: 1px solid grey; */
+  position: relative;
+  width: 2rem;
+  height: 2rem;
   display: flex;
   flex-flow: column nowrap;
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .menu-icon > div {
-  background-color: grey;
+  background-color: #fcfcfc;
   width: 90%;
   height: 3px;
   transition: 0.4s all;
 }
 
-.change.bar1 {
+.bar1.change {
   transform: rotate(-45deg) translate(-8px, 8px);
 }
 
-.change.bar2 {
+.bar2.change {
   opacity: 0;
 }
 
-.change.bar3 {
+.bar3.change {
   transform: rotate(405deg) translate(-8px, -8px);
 }
