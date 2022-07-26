@@ -14,7 +14,7 @@
   background-color: #fcfcfc;
   width: 90%;
   height: 3px;
-  transition: 0.4s all;
+  transition: 0.3s all;
 }
 
 .bar1.change {
@@ -26,5 +26,5 @@
 }
 
 .bar3.change {
-  transform: rotate(405deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
 }
