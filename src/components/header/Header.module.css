@@ -5,13 +5,13 @@
   background-color: #525257;
   width: 100%;
   padding: 0.5rem;
+  z-index: 500;
 }
 
 .sliding-menu {
   position: absolute;
   top: 3rem;
   left: 0;
-  z-index: 500;
   width: 20vw;
 }
 
@@ -42,4 +42,26 @@
   border: 1px solid var(--main-border-color);
   border-radius: 10px;
   cursor: pointer;
+}
+
+.sliding-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.sliding-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 300ms ease-out;
+}
+
+.sliding-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sliding-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 300ms ease-out;
 }
