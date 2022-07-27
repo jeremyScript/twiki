@@ -27,7 +27,7 @@ const Header: React.FC = () => {
       {showMenu && <Modal handleClick={handleMenuClick} />}
       <CSSTransition
         in={showMenu}
-        timeout={300}
+        timeout={200}
         classNames={transitionStyles}
         unmountOnExit
       >
