@@ -1,4 +1,6 @@
 .App {
   position: relative;
   padding: 0.5rem;
+  width: 100%;
+  min-width: 400px;
 }

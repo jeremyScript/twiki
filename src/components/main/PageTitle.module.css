@@ -3,14 +3,14 @@
 }
 
 .title-input {
-  background-color: var(--main-background-color);
-  border-radius: var(--main-border-radius);
-  border: 1px solid var(--main-border-color);
   width: 100%;
   padding: 1rem;
   font-size: 16px;
-  color: var(--preview-background-color);
   outline: none;
+  background-color: var(--main-background-color);
+  border-radius: var(--main-border-radius);
+  border: 1px solid var(--main-border-color);
+  color: var(--preview-background-color);
 }
 
 .title-input:focus {

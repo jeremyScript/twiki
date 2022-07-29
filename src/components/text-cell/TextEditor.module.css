@@ -1,7 +1,7 @@
 .text-editor {
+  overflow: hidden;
   border: 1px solid var(--main-border-color);
   border-radius: var(--main-border-radius);
-  overflow: hidden;
 }
 
 .text-editor:focus-within {

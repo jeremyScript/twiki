@@ -11,10 +11,10 @@
 }
 
 .menu-icon > div {
-  background-color: #fcfcfc;
   width: 90%;
   height: 3px;
   transition: 0.3s all;
+  background-color: #fcfcfc;
 }
 
 .bar1.change {

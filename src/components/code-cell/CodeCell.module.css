@@ -1,9 +1,9 @@
 .code-cell {
   display: flex;
   height: 100%;
+  overflow: hidden;
   border: 1px solid var(--main-border-color);
   border-radius: var(--main-border-radius);
-  overflow: hidden;
 }
 
 div.code-cell:focus-within {
