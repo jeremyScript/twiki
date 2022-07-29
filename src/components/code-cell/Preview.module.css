@@ -18,9 +18,9 @@
 .preview {
   height: 100%;
   width: 100%;
-  background-color: #fcfcfc;
   border: none;
   padding: 1rem;
+  background-color: #fcfcfc;
 }
 
 .bundling-error {
