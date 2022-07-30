@@ -1,8 +1,7 @@
 import Header from "./components/header/Header";
-import CodeCell from "./components/code-cell/CodeCell";
-import PageTitle from "./components//main/PageTitle";
-import TextEditor from "./components/text-cell/TextEditor";
 import Main from "./components/main/Main";
+import PageTitle from "./components//main/PageTitle";
+import CellList from "./components/main/CellList";
 
 import styles from "./App.module.css";
 
@@ -12,8 +11,7 @@ function App() {
       <Header />
       <Main>
         <PageTitle />
-        <TextEditor />
-        <CodeCell />
+        <CellList />
       </Main>
     </div>
   );
