@@ -1,7 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
+import cellsReducer from "./cellsSlice";
+
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    cells: cellsReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
