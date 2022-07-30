@@ -16,12 +16,12 @@
 
 .divider {
   position: absolute;
-  background-color: #58595b;
   width: 100%;
   height: 1px;
   top: calc(50% - 0.5px);
   z-index: 100;
   transition: all 300ms;
+  background-color: #58595b;
 }
 
 .add-cell button {
@@ -31,10 +31,10 @@
   padding: 0.125rem;
   cursor: pointer;
   border-radius: 5px;
-  border: 2px solid #58595b;
-  background-color: #58595b;
   color: #1e1e1e;
   transition: all 100ms;
+  border: 1px solid #58595b;
+  background-color: #58595b;
 }
 
 .add-cell button:hover {
