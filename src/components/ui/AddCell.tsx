@@ -4,13 +4,18 @@ import styles from "./AddCell.module.css";
 
 interface AddCellProps {
   prevCellId?: string;
+  forceShow?: boolean;
 }
 
-const AddCell: React.FC<AddCellProps> = ({ prevCellId }) => {
+const AddCell: React.FC<AddCellProps> = ({ prevCellId, forceShow }) => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className={styles["add-cell"]}>
+    <div
+      className={`${styles["add-cell"]} ${
+        forceShow ? styles["force-show"] : ""
+      }`}
+    >
       <button
         className={styles["button--code"]}
         onClick={() => dispatch(insertCellAfter({ type: "code", prevCellId }))}
