@@ -14,18 +14,18 @@ const CellList = () => {
   const cellData = useSelector(selectCellData);
 
   const renderedCells = cellIds.map((id) => {
-    const { type } = cellData[id];
-    if (type === "text") {
+    const { type, content } = cellData[id];
+    if (type === "code") {
       return (
         <section key={id}>
-          <TextCell />
+          <CodeCell id={id} content={content} />
           <AddCell prevCellId={id} />
         </section>
       );
     } else {
       return (
         <section key={id}>
-          <CodeCell />
+          <TextCell id={id} content={content} />
           <AddCell prevCellId={id} />
         </section>
       );
