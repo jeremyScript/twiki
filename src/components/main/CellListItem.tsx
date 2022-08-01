@@ -2,6 +2,7 @@ import { useAppSelector } from "../../hooks/typed-hooks";
 import CodeCell from "../code-cell/CodeCell";
 import TextCell from "../text-cell/TextCell";
 import AddCell from "../ui/AddCell";
+import CellControls from "../ui/CellControls";
 import styles from "./CellListItem.module.css";
 
 interface CellListItemProps {
@@ -19,7 +20,8 @@ const CellListItem: React.FC<CellListItemProps> = ({ id }) => {
     );
 
   return (
-    <section>
+    <section className={styles["cell-list-item"]}>
+      <CellControls />
       {renderedCell}
       <AddCell prevCellId={id} />
     </section>

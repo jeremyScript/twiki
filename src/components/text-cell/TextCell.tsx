@@ -39,7 +39,7 @@ const TextCell: React.FC<TextCellProps> = ({ id, content }) => {
   if (isEditing) {
     return (
       <div
-        className={styles["text-cell"]}
+        className={`${styles["text-cell"]} ${styles["open"]}`}
         data-color-mode="dark"
         ref={editorRef}
       >

@@ -1,0 +1,29 @@
+.cell-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: end;
+  align-items: center;
+  opacity: 0.05;
+  transition: opacity 200ms;
+}
+
+.cell-controls:hover {
+  opacity: 0.75;
+}
+
+.cell-controls button {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  border: 1px solid var(--main-border-color);
+  background-color: #b5cea8;
+}
+
+.cell-controls button:hover {
+  transform: scale(1.05);
+}
