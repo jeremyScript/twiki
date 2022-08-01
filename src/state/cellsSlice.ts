@@ -33,7 +33,7 @@ const cellsSlice = createSlice({
   reducers: {
     insertCellAfter(
       state,
-      action: PayloadAction<{ type: CellType; prevCellId: string }>
+      action: PayloadAction<{ type: CellType; prevCellId?: string }>
     ) {
       const { type, prevCellId } = action.payload;
       const id = nanoid();
@@ -43,7 +43,7 @@ const cellsSlice = createSlice({
         content: "",
       };
       state.data[id] = cell;
-      const index = prevCellId ? state.ids.indexOf(prevCellId) : 0;
+      const index = prevCellId ? state.ids.indexOf(prevCellId) + 1 : 0;
       state.ids.splice(index, 0, id);
     },
     updateCell(state, action: PayloadAction<{ id: string; content: string }>) {
