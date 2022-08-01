@@ -3,7 +3,7 @@ import { RootState } from "../../state/store";
 
 import AddCell from "../ui/AddCell";
 import CodeCell from "../code-cell/CodeCell";
-import TextEditor from "../text-cell/TextEditor";
+import TextCell from "../text-cell/TextCell";
 
 import styles from "./CellList.module.css";
 
@@ -18,7 +18,7 @@ const CellList = () => {
     if (type === "text") {
       return (
         <section key={id}>
-          <TextEditor />
+          <TextCell />
           <AddCell prevCellId={id} />
         </section>
       );
