@@ -43,7 +43,7 @@ const TextCell: React.FC = () => {
 
   return (
     <div
-      className={styles["text-cellr"]}
+      className={styles["text-cell"]}
       data-color-mode="dark"
       onClick={() => setIsEditing(true)}
     >
