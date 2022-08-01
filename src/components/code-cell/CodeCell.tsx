@@ -6,14 +6,26 @@ import CodeEditor from "./CodeEditor";
 import Resizable from "./Resizable";
 
 import styles from "./CodeCell.module.css";
+import { useAppDispatch, useAppSelector } from "../../hooks/typed-hooks";
+import { updateCell } from "../../state/cellsSlice";
+import { RootState } from "../../state/store";
 
-const CodeCell = () => {
-  const [input, setInput] = useState("");
+interface CodeCellProps {
+  id: string;
+  content?: string;
+}
+
+const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
+  const selectCellContent = (state: RootState) => state.cells.data[id].content;
+  const input = useAppSelector(selectCellContent);
+
+  const dispatch = useAppDispatch();
+
   const [output, setOutput] = useState("");
   const [status, setStatus] = useState("");
 
-  const handleInputChange = (inputCode: string) => {
-    setInput(inputCode);
+  const handleInputChange = (value: string) => {
+    dispatch(updateCell({ id, content: value }));
   };
 
   useEffect(() => {

@@ -1,13 +1,20 @@
 import MDEditor from "@uiw/react-md-editor";
 import { useEffect, useState, useRef } from "react";
+import { useAppDispatch } from "../../hooks/typed-hooks";
+import { updateCell } from "../../state/cellsSlice";
 
 import styles from "./TextCell.module.css";
 
-const TextCell: React.FC = () => {
+interface TextCellProps {
+  id: string;
+  content?: string;
+}
+
+const TextCell: React.FC<TextCellProps> = ({ id, content }) => {
+  const dispatch = useAppDispatch();
   const editorRef = useRef<HTMLDivElement>(null);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [text, setText] = useState("# Header");
 
   useEffect(() => {
     const clickEventListener = (event: MouseEvent) => {
@@ -36,7 +43,12 @@ const TextCell: React.FC = () => {
         data-color-mode="dark"
         ref={editorRef}
       >
-        <MDEditor value={text} onChange={(value) => setText(value as string)} />
+        <MDEditor
+          value={content}
+          onChange={(value) =>
+            dispatch(updateCell({ id: id, content: value || "" }))
+          }
+        />
       </div>
     );
   }
@@ -47,7 +59,7 @@ const TextCell: React.FC = () => {
       data-color-mode="dark"
       onClick={() => setIsEditing(true)}
     >
-      <MDEditor.Markdown source={text} />
+      <MDEditor.Markdown source={content || "Click to edit"} />
     </div>
   );
 };
