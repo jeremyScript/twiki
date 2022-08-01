@@ -1,9 +1,9 @@
-.text-editor {
+.text-cell {
   overflow: hidden;
   border: 1px solid var(--main-border-color);
   border-radius: var(--main-border-radius);
 }
 
-.text-editor:focus-within {
+.text-cell:focus-within {
   border: 1px solid var(--border-color--on-focus);
 }

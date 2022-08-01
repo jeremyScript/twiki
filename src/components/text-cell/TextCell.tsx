@@ -1,9 +1,9 @@
 import MDEditor from "@uiw/react-md-editor";
 import { useEffect, useState, useRef } from "react";
 
-import styles from "./TextEditor.module.css";
+import styles from "./TextCell.module.css";
 
-const TextEditor: React.FC = () => {
+const TextCell: React.FC = () => {
   const editorRef = useRef<HTMLDivElement>(null);
 
   const [isEditing, setIsEditing] = useState(false);
@@ -32,7 +32,7 @@ const TextEditor: React.FC = () => {
   if (isEditing) {
     return (
       <div
-        className={styles["text-editor"]}
+        className={styles["text-cell"]}
         data-color-mode="dark"
         ref={editorRef}
       >
@@ -43,7 +43,7 @@ const TextEditor: React.FC = () => {
 
   return (
     <div
-      className={styles["text-editor"]}
+      className={styles["text-cellr"]}
       data-color-mode="dark"
       onClick={() => setIsEditing(true)}
     >
@@ -52,4 +52,4 @@ const TextEditor: React.FC = () => {
   );
 };
 
-export default TextEditor;
+export default TextCell;
