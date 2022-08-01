@@ -17,22 +17,29 @@ const CellList = () => {
     const { type } = cellData[id];
     if (type === "text") {
       return (
-        <div key={id}>
+        <section key={id}>
           <TextEditor />
-          <AddCell />
-        </div>
+          <AddCell prevCellId={id} />
+        </section>
       );
-    } else if (type === "code") {
+    } else {
       return (
-        <div key={id}>
+        <section key={id}>
           <CodeCell />
-          <AddCell />
-        </div>
+          <AddCell prevCellId={id} />
+        </section>
       );
     }
   });
 
-  return <div>{renderedCells}</div>;
+  return (
+    <>
+      <section>
+        <AddCell />
+      </section>
+      {renderedCells}
+    </>
+  );
 };
 
 export default CellList;
