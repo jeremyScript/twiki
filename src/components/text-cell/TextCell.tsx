@@ -1,7 +1,8 @@
-import MDEditor from "@uiw/react-md-editor";
 import { useEffect, useState, useRef } from "react";
 import { useAppDispatch } from "../../hooks/typed-hooks";
 import { updateCell } from "../../state/cellsSlice";
+import MDEditor from "@uiw/react-md-editor";
+import Label from "../ui/Label";
 
 import styles from "./TextCell.module.css";
 
@@ -59,6 +60,7 @@ const TextCell: React.FC<TextCellProps> = ({ id, content }) => {
       data-color-mode="dark"
       onClick={() => setIsEditing(true)}
     >
+      <Label label="Text Editor" />
       <MDEditor.Markdown source={content || "Click to edit"} />
     </div>
   );
