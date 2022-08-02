@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/typed-hooks";
+import { updateCell } from "../../state/cellsSlice";
+import { RootState } from "../../state/store";
 import bundle from "../../bundler";
 import Preview from "./Preview";
 import CodeEditor from "./CodeEditor";
 import Resizable from "./Resizable";
+import Label from "../ui/Label";
 
 import styles from "./CodeCell.module.css";
-import { useAppDispatch, useAppSelector } from "../../hooks/typed-hooks";
-import { updateCell } from "../../state/cellsSlice";
-import { RootState } from "../../state/store";
 
 interface CodeCellProps {
   id: string;
@@ -43,6 +43,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
   return (
     <Resizable direction="vertical">
       <div className={styles["code-cell"]}>
+        <Label label="Code Editor" />
         <Resizable direction="horizontal">
           <CodeEditor
             initialValue="const a = 123;"

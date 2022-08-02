@@ -1,6 +1,5 @@
 .text-cell {
   position: relative;
-  overflow: hidden;
   border: 1px solid var(--main-border-color);
   border-radius: var(--main-border-radius);
 }

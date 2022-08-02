@@ -1,0 +1,15 @@
+.label {
+  position: absolute;
+  top: -7px;
+  left: 8px;
+  color: aliceblue;
+  font-size: 0.75rem;
+  z-index: 400;
+  padding: 0 0.125rem;
+  background-color: var(--main-background-color);
+  background-image: linear-gradient(
+    to bottom,
+    var(--main-background-color),
+    var(--main-editor-background-color)
+  );
+}
