@@ -12,11 +12,15 @@ const PageTitle: React.FC = () => {
     <div className={styles["page-title"]}>
       <input
         type="text"
+        id="page-title"
         onChange={handleChange}
-        placeholder="(untitled)"
+        placeholder="(e.g., How to make HTTP requests)"
         className={styles["title-input"]}
         value={title}
       />
+      <label className={styles["label"]} htmlFor="page-title">
+        Page Title
+      </label>
     </div>
   );
 };
