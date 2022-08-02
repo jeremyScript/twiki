@@ -21,7 +21,7 @@ const CellListItem: React.FC<CellListItemProps> = ({ id }) => {
 
   return (
     <section className={styles["cell-list-item"]}>
-      <CellControls />
+      <CellControls id={id} />
       {renderedCell}
       <AddCell prevCellId={id} />
     </section>

@@ -19,11 +19,8 @@ export interface CellsState {
 
 const initialState: CellsState = {
   status: "idle",
-  ids: ["1", "2"],
-  data: {
-    1: { id: "1", type: "code", content: "console.log('123')" },
-    2: { id: "2", type: "text", content: "Hello" },
-  },
+  ids: [],
+  data: {},
   error: null,
 };
 
@@ -67,9 +64,8 @@ const cellsSlice = createSlice({
     },
     deleteCell(state, action: PayloadAction<{ id: string }>) {
       const { id } = action.payload;
+      state.ids = state.ids.filter((cellId) => cellId !== id);
       delete state.data[id];
-      const index = state.ids.indexOf(id);
-      state.ids.splice(index, 1);
     },
   },
 });
