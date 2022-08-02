@@ -1,7 +1,6 @@
 import { useAppSelector } from "../../hooks/typed-hooks";
 import CellListItem from "./CellListItem";
 import AddCell from "../ui/AddCell";
-import styles from "./CellList.module.css";
 
 const CellList = () => {
   const cellIds = useAppSelector((state) => state.cells.ids);

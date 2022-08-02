@@ -19,11 +19,17 @@
   cursor: pointer;
   width: 25px;
   height: 25px;
-  border-radius: 5px;
   border: 1px solid var(--main-border-color);
-  background-color: #c2e276;
+  background-color: #519aba;
 }
 
 .cell-controls button:hover {
   transform: scale(1.05);
+}
+
+.cell-controls button:first-child {
+  border-bottom-left-radius: 5px;
+}
+.cell-controls button:last-child {
+  border-top-right-radius: 5px;
 }
