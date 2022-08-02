@@ -1,11 +1,13 @@
 .page-title {
   width: 100%;
+  display: flex;
+  flex-flow: column-reverse;
 }
 
 .title-input {
   width: 100%;
   padding: 1rem;
-  font-size: 16px;
+  font-size: 1.125rem;
   outline: none;
   background-color: var(--main-background-color);
   border-radius: var(--main-border-radius);
@@ -13,7 +15,41 @@
   color: var(--preview-background-color);
 }
 
+.label {
+  position: absolute;
+  width: fit-content;
+  padding: 0 0.125rem;
+  font-size: 0.75rem;
+  color: var(--preview-background-color);
+  background-color: var(--main-background-color);
+}
+
+.title-input,
+.label {
+  transition: all 200ms;
+}
+
 .title-input:focus {
-  background-color: var(--main-editor-background-color);
   border: 1px solid var(--border-color--on-focus);
+}
+
+.title-input:placeholder-shown + .label {
+  cursor: text;
+  transform-origin: left bottom;
+  transform: translate(0.875rem, -1rem) scale(1.75);
+}
+
+::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+}
+
+.title-input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+
+.title-input:not(:placeholder-shown) + .label,
+.title-input:focus + .label {
+  transform: translate(0.5rem, -3rem) scale(1);
+  cursor: pointer;
 }
