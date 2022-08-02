@@ -18,6 +18,8 @@
   max-width: 400px;
   min-width: 300px;
   background-color: #fcfcfc;
+  box-shadow: rgb(31, 193, 27) 0px 3px 0px 3px,
+    rgb(255, 156, 85) 0px 5px 0px 5px, rgb(255, 85, 156) 0px 7px 0px 7px;
 }
 
 .menu-contents > li {

@@ -17,14 +17,18 @@
 
 .cell-controls button {
   cursor: pointer;
-  width: 25px;
-  height: 25px;
+  width: 23px;
+  height: 23px;
   border: 1px solid var(--main-border-color);
-  background-color: #519aba;
+  background-color: #ffe54c;
 }
 
 .cell-controls button:hover {
   transform: scale(1.05);
+}
+
+.cell-controls button:active {
+  transform: scale(0.95);
 }
 
 .cell-controls button:first-child {
