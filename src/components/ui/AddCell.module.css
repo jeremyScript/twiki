@@ -35,13 +35,38 @@
   padding: 0.125rem;
   cursor: pointer;
   border-radius: 5px;
-  color: #1e1e1e;
   transition: all 300ms ease-out;
-  border: 1px solid #58595b;
-  background-color: #58595b;
+  background-color: #3dd1e7;
+  border: 0 solid #e5e7eb;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  transform: rotate(-2deg);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .add-cell button:hover {
-  transform: scale(1.1);
-  background-color: #fff;
+  transform: rotate(-2deg) scale(1.05);
+}
+
+.add-cell button:focus {
+  outline: 0;
+}
+
+.add-cell button:after {
+  content: "";
+  position: absolute;
+  border: 1px solid #000;
+  bottom: 3px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+.add-cell button:active:after {
+  bottom: 1px;
+  left: 1px;
 }
