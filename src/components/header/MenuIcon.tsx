@@ -13,6 +13,7 @@ const MenuIcon: React.FC<MenuIconProps> = ({ showMenu, handleMenuClick }) => {
       className={styles["menu-icon"]}
       onClick={handleMenuClick}
       aria-label="menu-control"
+      role="button"
     >
       <div className={`${styles.bar1} ${classOnToggle}`} />
       <div className={`${styles.bar2} ${classOnToggle}`} />

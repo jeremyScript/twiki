@@ -1,4 +1,5 @@
 import { createPortal } from "react-dom";
+
 import styles from "./Modal.module.css";
 
 interface ModalBackdropProps {

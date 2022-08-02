@@ -6,6 +6,7 @@
   padding: 0.5rem 1rem;
   z-index: 500;
   background-color: #0f87ff;
+  background-image: linear-gradient(to top right, #0f87ff, #007acc);
 }
 
 .sliding-enter {
