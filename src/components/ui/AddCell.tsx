@@ -18,14 +18,14 @@ const AddCell: React.FC<AddCellProps> = ({ prevCellId, forceShow }) => {
     >
       <button
         className={styles["button--code"]}
-        onClick={() => dispatch(insertCellAfter({ type: "code", prevCellId }))}
+        onClick={() => dispatch(insertCellAfter("code", prevCellId))}
       >
         + Code
       </button>
       <div className={styles.divider} />
       <button
         className={styles["button--text"]}
-        onClick={() => dispatch(insertCellAfter({ type: "text", prevCellId }))}
+        onClick={() => dispatch(insertCellAfter("text", prevCellId))}
       >
         + Text
       </button>
