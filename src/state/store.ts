@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import cellsReducer from "./cellsSlice";
+import bundlesReducer from "./bundlesSlice";
 
 export const store = configureStore({
   reducer: {
     cells: cellsReducer,
+    bundles: bundlesReducer,
   },
 });
 
