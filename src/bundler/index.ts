@@ -31,11 +31,11 @@ const bundle = async (codeToBeBundled: string) => {
       plugins: [unpkgResolvePlugin, unpkgLoadPlugin(codeToBeBundled)],
     });
 
-    return { code: bundled.outputFiles[0].text, bundlingStatus: "" };
+    return { code: bundled.outputFiles[0].text, bundleStatus: "" };
   } catch (error: any) {
     return {
       code: "",
-      bundlingStatus: error.message,
+      bundleStatus: error.message,
     };
   }
 };

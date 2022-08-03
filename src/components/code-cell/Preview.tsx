@@ -3,10 +3,10 @@ import styles from "./Preview.module.css";
 
 interface PreviewProps {
   code: string;
-  bundlingStatus: string;
+  bundleStatus: string;
 }
 
-const Preview: React.FC<PreviewProps> = ({ code, bundlingStatus }) => {
+const Preview: React.FC<PreviewProps> = ({ code, bundleStatus }) => {
   const iframRef = useRef<HTMLIFrameElement>(null);
 
   const html = `
@@ -69,8 +69,8 @@ const Preview: React.FC<PreviewProps> = ({ code, bundlingStatus }) => {
         srcDoc={html}
         sandbox="allow-scripts"
       />
-      {bundlingStatus && (
-        <div className={styles["bundling-error"]}>{bundlingStatus}</div>
+      {bundleStatus && (
+        <div className={styles["bundling-error"]}>{bundleStatus}</div>
       )}
     </div>
   );
