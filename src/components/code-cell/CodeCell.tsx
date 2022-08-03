@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/typed-hooks";
+import { createBundle } from "../../state/bundlesSlice";
 import { updateCell } from "../../state/cellsSlice";
 import { RootState } from "../../state/store";
-import bundle from "../../bundler";
 import Preview from "./Preview";
 import CodeEditor from "./CodeEditor";
 import Resizable from "./Resizable";
@@ -16,29 +16,29 @@ interface CodeCellProps {
 }
 
 const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
-  const selectCellContent = (state: RootState) => state.cells.data[id].content;
-  const input = useAppSelector(selectCellContent);
+  const selectBundle = (state: RootState) => state.bundles[id];
+  const bundle = useAppSelector(selectBundle);
 
   const dispatch = useAppDispatch();
-
-  const [output, setOutput] = useState("");
-  const [status, setStatus] = useState("");
 
   const handleInputChange = (value: string) => {
     dispatch(updateCell({ id, content: value }));
   };
 
   useEffect(() => {
-    const bundler = setTimeout(async () => {
-      const bundled = await bundle(input);
-      setOutput(bundled.code);
-      setStatus(bundled.bundlingStatus);
+    const bundler = setTimeout(() => {
+      if (!bundle) {
+        dispatch(createBundle(id, content as string));
+        return;
+      }
+      dispatch(createBundle(id, content as string));
     }, 1000);
 
     return () => {
       clearTimeout(bundler);
     };
-  }, [input]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [content, id, dispatch]);
 
   return (
     <Resizable direction="vertical">
@@ -50,7 +50,11 @@ const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
             handleInputChange={handleInputChange}
           />
         </Resizable>
-        <Preview code={output} bundlingStatus={status} />
+        {!bundle || bundle.bundling ? (
+          <div>loading</div>
+        ) : (
+          <Preview code={bundle.code} bundleStatus={bundle.error} />
+        )}
       </div>
     </Resizable>
   );
