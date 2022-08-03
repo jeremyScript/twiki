@@ -3,11 +3,13 @@ import { AppDispatch } from "./store";
 import bundle from "../bundler";
 
 export interface BundlesState {
-  [key: string]: {
-    bundling: boolean;
-    code: string;
-    error: string;
-  };
+  [key: string]:
+    | {
+        bundling: boolean;
+        code: string;
+        error: string;
+      }
+    | undefined;
 }
 
 const initialState: BundlesState = {};
