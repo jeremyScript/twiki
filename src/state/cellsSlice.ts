@@ -28,21 +28,36 @@ const cellsSlice = createSlice({
   name: "cells",
   initialState,
   reducers: {
-    insertCellAfter(
-      state,
-      action: PayloadAction<{ type: CellType; prevCellId?: string }>
-    ) {
-      const { type, prevCellId } = action.payload;
-      const id = nanoid();
-      const cell: Cell = {
-        id,
-        type,
-        content: "",
-      };
-      state.data[id] = cell;
-      const index = prevCellId ? state.ids.indexOf(prevCellId) + 1 : 0;
-      state.ids.splice(index, 0, id);
+    insertCellAfter: {
+      reducer(
+        state,
+        action: PayloadAction<{
+          id: string;
+          type: CellType;
+          prevCellId?: string;
+        }>
+      ) {
+        const { id, type, prevCellId } = action.payload;
+        const cell: Cell = {
+          id,
+          type,
+          content: "",
+        };
+        state.data[id] = cell;
+        const index = prevCellId ? state.ids.indexOf(prevCellId) + 1 : 0;
+        state.ids.splice(index, 0, id);
+      },
+      prepare(type, prevCellId) {
+        return {
+          payload: {
+            id: nanoid(),
+            type,
+            prevCellId,
+          },
+        };
+      },
     },
+
     updateCell(state, action: PayloadAction<{ id: string; content: string }>) {
       const { id, content } = action.payload;
       state.data[id].content = content;
