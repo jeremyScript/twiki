@@ -14,8 +14,8 @@
   cursor: pointer;
   opacity: 0;
   transition: all 200ms;
-  background-color: palevioletred;
-  border: 1px solid palevioletred;
+  background-color: rgb(255, 85, 156);
+  border: 1px solid rgb(255, 85, 156);
   color: #fefefe;
 }
 
