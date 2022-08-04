@@ -7,6 +7,7 @@ import Preview from "./Preview";
 import CodeEditor from "./CodeEditor";
 import Resizable from "./Resizable";
 import Label from "../ui/Label";
+import Loader from "../ui/Loader";
 
 import styles from "./CodeCell.module.css";
 
@@ -50,11 +51,13 @@ const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
             handleInputChange={handleInputChange}
           />
         </Resizable>
-        {!bundle || bundle.bundling ? (
-          <div>loading</div>
-        ) : (
-          <Preview code={bundle.code} bundleStatus={bundle.error} />
-        )}
+        <div className={styles["preview-wrapper"]}>
+          {!bundle || bundle.bundling ? (
+            <Loader />
+          ) : (
+            <Preview code={bundle.code} bundleStatus={bundle.error} />
+          )}
+        </div>
       </div>
     </Resizable>
   );

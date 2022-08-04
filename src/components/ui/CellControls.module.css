@@ -12,7 +12,7 @@
 }
 
 .cell-controls:hover {
-  opacity: 0.75;
+  opacity: 1;
 }
 
 .cell-controls button {
@@ -20,8 +20,9 @@
   width: 23px;
   height: 23px;
   border: 1px solid var(--main-border-color);
-  background-color: #ffe54c;
   background-color: #ffc62d;
+  background-color: #ffe54c;
+  background-color: #f2d200;
 }
 
 .cell-controls button:hover {

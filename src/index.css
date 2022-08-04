@@ -95,6 +95,10 @@ div.wmde-markdown {
   border-radius: 5px;
 }
 
+div.w-md-editor-preview {
+  border-radius: 0;
+}
+
 div.w-md-editor-text textarea,
 div.w-md-editor-text {
   padding: 1rem;
