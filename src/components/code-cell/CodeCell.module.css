@@ -9,3 +9,8 @@
 div.code-cell:focus-within {
   border: 1px solid var(--border-color--on-focus);
 }
+
+.preview-wrapper {
+  background-color: #fff;
+  flex: 1;
+}

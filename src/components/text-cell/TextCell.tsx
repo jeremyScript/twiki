@@ -56,7 +56,7 @@ const TextCell: React.FC<TextCellProps> = ({ id, content }) => {
 
   return (
     <div
-      className={styles["text-cell"]}
+      className={`${styles["text-cell"]} ${styles.closed}`}
       data-color-mode="dark"
       onClick={() => setIsEditing(true)}
     >
