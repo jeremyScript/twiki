@@ -23,7 +23,29 @@ const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
   const bundle = useAppSelector(selectBundle);
 
   const orderedCells = useAppSelector(selectOrderedCells);
-  const cumulativeCode: string[] = [];
+  const cumulativeCode: string[] = [
+    `
+      import _React from 'react';
+      import _ReactDOM from 'react-dom';
+
+      function show(value) {
+        const root = document.getElementById('root');
+        if (typeof value === 'object') {
+          if (value.$$typeof && value.props) {
+            _ReactDOM.render(
+              value,
+              root
+            )
+          } else {
+            root.innerHTML = JSON.stringify(value);
+          }
+        } else {
+          root.innerHTML = value;
+        }
+        const stringified = JSON.stringify(a);
+      }
+    `,
+  ];
 
   for (let cell of orderedCells) {
     if (cell.type === "code") {
