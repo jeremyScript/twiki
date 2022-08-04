@@ -11,6 +11,6 @@ div.code-cell:focus-within {
 }
 
 .preview-wrapper {
-  background-color: #fff;
   flex: 1;
+  background-color: var(--preview-background-color);
 }
