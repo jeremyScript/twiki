@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { createBundle } from "../../state/bundlesSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/typed-hooks";
-import { selectOrderedCells, updateCell } from "../../state/cellsSlice";
+import { updateCell } from "../../state/cellsSlice";
 import { RootState } from "../../state/store";
 import Preview from "./Preview";
 import CodeEditor from "./CodeEditor";
