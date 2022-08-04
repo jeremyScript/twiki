@@ -23,32 +23,38 @@ const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
   const bundle = useAppSelector(selectBundle);
 
   const orderedCells = useAppSelector(selectOrderedCells);
-  const cumulativeCode: string[] = [
-    `
-      import _React from 'react';
-      import _ReactDOM from 'react-dom';
+  const cumulativeCode: string[] = [];
 
-      function show(value) {
-        const root = document.getElementById('root');
-        if (typeof value === 'object') {
-          if (value.$$typeof && value.props) {
-            _ReactDOM.render(
-              value,
-              root
-            )
-          } else {
-            root.innerHTML = JSON.stringify(value);
-          }
+  const showFunc = `
+    import _React from 'react';
+    import _ReactDOM from 'react-dom';
+
+    var show = (value) => {
+      const root = document.getElementById('root');
+      if (typeof value === 'object') {
+        if (value.$$typeof && value.props) {
+          _ReactDOM.render(
+            value,
+            root
+          );
         } else {
-          root.innerHTML = value;
+          root.innerHTML = JSON.stringify(value);
         }
-        const stringified = JSON.stringify(a);
+      } else {
+        root.innerHTML = value;
       }
-    `,
-  ];
+    };
+  `;
+
+  const showFuncNoOp = `var show = () => {};`;
 
   for (let cell of orderedCells) {
     if (cell.type === "code") {
+      if (cell.id === id) {
+        cumulativeCode.push(showFunc);
+      } else {
+        cumulativeCode.push(showFuncNoOp);
+      }
       cumulativeCode.push(cell.content);
       if (cell.id === id) break;
     }
@@ -78,10 +84,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
       <div className={styles["code-cell"]}>
         <Label label="Code Editor" />
         <Resizable direction="horizontal">
-          <CodeEditor
-            initialValue="const a = 123;"
-            handleInputChange={handleInputChange}
-          />
+          <CodeEditor initialValue="" handleInputChange={handleInputChange} />
         </Resizable>
         <div className={styles["preview-wrapper"]}>
           {!bundle || bundle.bundling ? (
