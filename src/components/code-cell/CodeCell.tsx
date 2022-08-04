@@ -10,6 +10,7 @@ import Label from "../ui/Label";
 import Loader from "../ui/Loader";
 
 import styles from "./CodeCell.module.css";
+import useCumulativeCode from "../../hooks/use-cumulative-code";
 
 interface CodeCellProps {
   id: string;
@@ -22,43 +23,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
   const selectBundle = (state: RootState) => state.bundles[id];
   const bundle = useAppSelector(selectBundle);
 
-  const orderedCells = useAppSelector(selectOrderedCells);
-  const cumulativeCode: string[] = [];
-
-  const showFunc = `
-    import _React from 'react';
-    import _ReactDOM from 'react-dom';
-
-    var show = (value) => {
-      const root = document.getElementById('root');
-      if (typeof value === 'object') {
-        if (value.$$typeof && value.props) {
-          _ReactDOM.render(
-            value,
-            root
-          );
-        } else {
-          root.innerHTML = JSON.stringify(value);
-        }
-      } else {
-        root.innerHTML = value;
-      }
-    };
-  `;
-
-  const showFuncNoOp = `var show = () => {};`;
-
-  for (let cell of orderedCells) {
-    if (cell.type === "code") {
-      if (cell.id === id) {
-        cumulativeCode.push(showFunc);
-      } else {
-        cumulativeCode.push(showFuncNoOp);
-      }
-      cumulativeCode.push(cell.content);
-      if (cell.id === id) break;
-    }
-  }
+  const cumulativeCode = useCumulativeCode(id);
 
   const handleInputChange = (value: string) => {
     dispatch(updateCell({ id, content: value }));
@@ -67,17 +32,17 @@ const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
   useEffect(() => {
     const bundler = setTimeout(() => {
       if (!bundle) {
-        dispatch(createBundle(id, cumulativeCode.join("\n")));
+        dispatch(createBundle(id, cumulativeCode));
         return;
       }
-      dispatch(createBundle(id, cumulativeCode.join("\n")));
-    }, 1000);
+      dispatch(createBundle(id, cumulativeCode));
+    }, 1500);
 
     return () => {
       clearTimeout(bundler);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cumulativeCode.join("\n"), id, dispatch]);
+  }, [cumulativeCode, id, dispatch]);
 
   return (
     <Resizable direction="vertical">
