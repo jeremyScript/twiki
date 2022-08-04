@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/typed-hooks";
 import { createBundle } from "../../state/bundlesSlice";
-import { updateCell } from "../../state/cellsSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks/typed-hooks";
+import { selectOrderedCells, updateCell } from "../../state/cellsSlice";
 import { RootState } from "../../state/store";
 import Preview from "./Preview";
 import CodeEditor from "./CodeEditor";
@@ -17,10 +17,20 @@ interface CodeCellProps {
 }
 
 const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
+  const dispatch = useAppDispatch();
+
   const selectBundle = (state: RootState) => state.bundles[id];
   const bundle = useAppSelector(selectBundle);
 
-  const dispatch = useAppDispatch();
+  const orderedCells = useAppSelector(selectOrderedCells);
+  const cumulativeCode: string[] = [];
+
+  for (let cell of orderedCells) {
+    if (cell.type === "code") {
+      cumulativeCode.push(cell.content);
+      if (cell.id === id) break;
+    }
+  }
 
   const handleInputChange = (value: string) => {
     dispatch(updateCell({ id, content: value }));
@@ -29,17 +39,17 @@ const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
   useEffect(() => {
     const bundler = setTimeout(() => {
       if (!bundle) {
-        dispatch(createBundle(id, content as string));
+        dispatch(createBundle(id, cumulativeCode.join("\n")));
         return;
       }
-      dispatch(createBundle(id, content as string));
+      dispatch(createBundle(id, cumulativeCode.join("\n")));
     }, 1000);
 
     return () => {
       clearTimeout(bundler);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [content, id, dispatch]);
+  }, [cumulativeCode.join("\n"), id, dispatch]);
 
   return (
     <Resizable direction="vertical">

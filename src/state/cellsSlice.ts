@@ -1,4 +1,10 @@
-import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSelector,
+  createSlice,
+  nanoid,
+  PayloadAction,
+} from "@reduxjs/toolkit";
+import { RootState } from "./store";
 
 export type CellType = "code" | "text";
 
@@ -23,6 +29,13 @@ const initialState: CellsState = {
   data: {},
   error: null,
 };
+
+export const selectIds = (state: RootState) => state.cells.ids;
+export const selectCells = (state: RootState) => state.cells.data;
+export const selectOrderedCells = createSelector(
+  [selectIds, selectCells],
+  (ids, cells) => ids.map((id) => cells[id])
+);
 
 const cellsSlice = createSlice({
   name: "cells",
