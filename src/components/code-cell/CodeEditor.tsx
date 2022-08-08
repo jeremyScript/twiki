@@ -60,7 +60,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
           lineNumbersMinChars: 3,
           minimap: { enabled: false },
           padding: {
-            top: 5,
+            top: 10,
             bottom: 5,
           },
           scrollBeyondLastLine: false,

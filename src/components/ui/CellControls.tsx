@@ -11,11 +11,11 @@ const CellControls: React.FC<CellControlsProps> = ({ id }) => {
 
   return (
     <div className={styles["cell-controls"]}>
-      <button onClick={() => dispatch(moveCell({ id, direction: "up" }))}>
-        &#8593;
-      </button>
       <button onClick={() => dispatch(moveCell({ id, direction: "down" }))}>
         &#8595;
+      </button>
+      <button onClick={() => dispatch(moveCell({ id, direction: "up" }))}>
+        &#8593;
       </button>
       <button onClick={() => dispatch(deleteCell({ id }))}>&#x2715;</button>
     </div>
