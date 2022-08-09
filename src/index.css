@@ -24,6 +24,7 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background-color: var(--body-background-color);
+  min-width: 400px;
 }
 
 /* Override resizable styles */
@@ -76,6 +77,16 @@ body {
 
 .monaco-editor {
   padding: 5px 0;
+}
+
+.editor-widget,
+.parameter-hints-widget {
+  border: none !important;
+}
+
+.signature,
+.code {
+  display: none;
 }
 
 /* .monaco-scrollable-element .decorationsOverviewRuler {

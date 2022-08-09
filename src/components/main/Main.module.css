@@ -3,6 +3,6 @@
   padding: 1rem 1rem 15vh 1rem;
   overflow: auto;
   height: calc(100vh - 4.25rem);
-  margin-top: 3.25rem;
+  margin-top: 3.125rem;
   background-color: var(--main-background-color);
 }
