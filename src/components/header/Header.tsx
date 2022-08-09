@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import { NavLink } from "react-router-dom";
 
 import Menu from "./Menu";
 import MenuIcon from "./MenuIcon";
+import NavBar from "./NavBar";
 import Modal from "../ui/Modal";
 
 import styles from "./Header.module.css";
@@ -34,19 +34,7 @@ const Header: React.FC = () => {
       >
         <Menu />
       </CSSTransition>
-      <nav className={styles["nav"]}>
-        <ul>
-          <li className={styles["nav-item"]}>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li className={styles["nav-item"]}>
-            <NavLink to="log-in">Log in</NavLink>
-          </li>
-          <li className={styles["nav-item"]}>
-            <NavLink to="sign-up">Sign up</NavLink>
-          </li>
-        </ul>
-      </nav>
+      <NavBar />
     </header>
   );
 };
