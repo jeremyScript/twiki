@@ -1,0 +1,38 @@
+.nav ul {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 0.75rem;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item:active {
+  transform: scale(0.95);
+}
+
+.log-in {
+  border: 1px solid #111820;
+}
+
+.sign-up {
+  border: 1px solid #fcfcfc;
+}
+
+.nav-item a {
+  padding: 0.5rem;
+  letter-spacing: -0.5px;
+  text-align: center;
+  text-decoration: none;
+  color: #111820;
+  user-select: none;
+}
+
+.nav-item a:hover {
+  color: #f2d200;
+}
+
+a.isActive {
+  color: #f2d200;
+  font-weight: 600;
+}
