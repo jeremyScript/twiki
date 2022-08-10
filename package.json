@@ -18,6 +18,7 @@
     "@uiw/react-md-editor": "^3.14.5",
     "axios": "^0.27.2",
     "esbuild-wasm": "0.8.57",
+    "firebase": "^9.9.2",
     "localforage": "^1.10.0",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
