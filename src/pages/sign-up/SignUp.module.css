@@ -1,4 +1,4 @@
-.signup-form {
+.sign-up-form {
   position: relative;
   margin: 0 auto;
   top: 15%;
@@ -11,7 +11,7 @@
   width: 21rem;
 }
 
-.signup-form h2 {
+.sign-up-form h2 {
   margin: 0 0 0.5rem;
   font-size: 1.125rem;
   color: #fcfcfc;

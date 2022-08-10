@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useSignUp from "../../hooks/useSignUp";
 import Main from "../../components/main/Main";
 
 import styles from "./SignUp.module.css";
@@ -7,26 +8,27 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { signUp, isPending, error } = useSignUp();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO
+    signUp(name, email, password);
   };
 
   return (
     <Main>
-      <form className={styles["signup-form"]} onSubmit={handleSubmit}>
+      <form className={styles["sign-up-form"]} onSubmit={handleSubmit}>
         <h2>Create your tWiki account!</h2>
         <div className={styles["name"]}>
           <input
             className={styles["input"]}
             type="text"
-            id="signup-name"
+            id="sign-up-name"
             placeholder=" "
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <label className={styles["label"]} htmlFor="signup-name">
+          <label className={styles["label"]} htmlFor="sign-up-name">
             Name
           </label>
           <img
@@ -40,12 +42,12 @@ const SignUp = () => {
           <input
             className={styles["input"]}
             type="email"
-            id="signup-email"
+            id="sign-up-email"
             placeholder=" "
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label className={styles["label"]} htmlFor="signup-email">
+          <label className={styles["label"]} htmlFor="sign-up-email">
             Email
           </label>
           <img
@@ -59,12 +61,12 @@ const SignUp = () => {
           <input
             className={styles["input"]}
             type="password"
-            id="signup-password"
+            id="sign-up-password"
             placeholder=" "
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <label className={styles["label"]} htmlFor="signup-password">
+          <label className={styles["label"]} htmlFor="sign-up-password">
             Password
           </label>
           <img
@@ -74,9 +76,17 @@ const SignUp = () => {
             alt="password"
           />
         </div>
-        <button className={styles["btn"]} type="submit">
-          Sign up
-        </button>
+        {!isPending && (
+          <button className={styles["btn"]} type="submit">
+            Sign up
+          </button>
+        )}
+        {isPending && (
+          <button className={styles["btn"]} disabled>
+            Loading
+          </button>
+        )}
+        {error && <p>{error}</p>}
       </form>
     </Main>
   );

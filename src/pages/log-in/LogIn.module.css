@@ -1,4 +1,4 @@
-.login-form {
+.log-in-form {
   position: relative;
   margin: 0 auto;
   top: 15%;
@@ -11,7 +11,7 @@
   width: 21rem;
 }
 
-.login-form h2 {
+.log-in-form h2 {
   margin: 0 0 0.5rem;
   font-size: 1.125rem;
   color: #fcfcfc;

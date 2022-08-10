@@ -14,18 +14,18 @@ const LogIn = () => {
 
   return (
     <Main>
-      <form className={styles["login-form"]} onSubmit={handleSubmit}>
+      <form className={styles["log-in-form"]} onSubmit={handleSubmit}>
         <h2>Log in to your tWiki account!</h2>
         <div className={styles["email"]}>
           <input
             className={styles["input"]}
             type="email"
-            id="login-email"
+            id="log-in-email"
             placeholder=" "
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label className={styles["label"]} htmlFor="login-email">
+          <label className={styles["label"]} htmlFor="log-in-email">
             Email
           </label>
           <img
@@ -39,12 +39,12 @@ const LogIn = () => {
           <input
             className={styles["input"]}
             type="password"
-            id="login-password"
+            id="log-in-password"
             placeholder=" "
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <label className={styles["label"]} htmlFor="login-password">
+          <label className={styles["label"]} htmlFor="log-in-password">
             Password
           </label>
           <img
