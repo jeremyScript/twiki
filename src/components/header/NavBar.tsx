@@ -20,33 +20,34 @@ const NavBar = () => {
           </NavLink>
         </li>
         {!isLoggedIn && (
-          <li className={styles["nav-item"]}>
-            <NavLink
-              to="log-in"
-              className={({ isActive }) =>
-                isActive
-                  ? `${styles["isActive"]} ${styles["log-in"]}`
-                  : styles["log-in"]
-              }
-            >
-              Log in
-            </NavLink>
-          </li>
+          <>
+            <li className={styles["nav-item"]}>
+              <NavLink
+                to="log-in"
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles["isActive"]} ${styles["log-in"]}`
+                    : styles["log-in"]
+                }
+              >
+                Log in
+              </NavLink>
+            </li>
+            <li className={`${styles["nav-item"]}`}>
+              <NavLink
+                to="sign-up"
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles["isActive"]} ${styles["sign-up"]}`
+                    : styles["sign-up"]
+                }
+              >
+                Sign up
+              </NavLink>
+            </li>
+          </>
         )}
-        {!isLoggedIn && (
-          <li className={`${styles["nav-item"]}`}>
-            <NavLink
-              to="sign-up"
-              className={({ isActive }) =>
-                isActive
-                  ? `${styles["isActive"]} ${styles["sign-up"]}`
-                  : styles["sign-up"]
-              }
-            >
-              Sign up
-            </NavLink>
-          </li>
-        )}
+
         {isLoggedIn && (
           <li className={styles["nav-item"]}>
             <NavLink to="/" className={styles["log-out"]} onClick={logOut}>
