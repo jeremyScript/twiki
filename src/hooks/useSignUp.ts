@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/config";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useAppDispatch } from "./useTypedHooks";
 import { userLoggedIn } from "../state/userSlice";
 
@@ -10,7 +9,6 @@ const useSignUp = () => {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const signUp = async (
@@ -45,7 +43,6 @@ const useSignUp = () => {
 
         setIsPending(false);
         setError(null);
-        navigate("/", { replace: true });
       }
     } catch (err: any) {
       if (!isCancelled) {
