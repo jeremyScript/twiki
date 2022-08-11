@@ -1,4 +1,4 @@
-import { useAppDispatch } from "../../hooks/typed-hooks";
+import { useAppDispatch } from "../../hooks/useTypedHooks";
 import { deleteCell, moveCell } from "../../state/cellsSlice";
 import styles from "./CellControls.module.css";
 

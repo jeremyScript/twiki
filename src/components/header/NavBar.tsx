@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "../../hooks/typed-hooks";
+import { useAppSelector } from "../../hooks/useTypedHooks";
 import useLogOut from "../../hooks/useLogOut";
 
 import styles from "./NavBar.module.css";

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { userLoggedOut } from "../state/userSlice";
-import { useAppDispatch } from "./typed-hooks";
+import { useAppDispatch } from "./useTypedHooks";
 
 const useLogOut = () => {
   const [isCancelled, setIsCancelled] = useState(false);

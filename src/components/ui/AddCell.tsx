@@ -1,4 +1,4 @@
-import { useAppDispatch } from "../../hooks/typed-hooks";
+import { useAppDispatch } from "../../hooks/useTypedHooks";
 import { insertCellAfter } from "../../state/cellsSlice";
 import styles from "./AddCell.module.css";
 

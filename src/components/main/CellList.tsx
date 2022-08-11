@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../hooks/typed-hooks";
+import { useAppSelector } from "../../hooks/useTypedHooks";
 import CellListItem from "./CellListItem";
 import AddCell from "../ui/AddCell";
 
