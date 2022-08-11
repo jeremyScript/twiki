@@ -16,6 +16,7 @@ export interface Cell {
 
 export interface CellsState {
   status: string;
+  title: string;
   ids: string[];
   data: {
     [id: string]: Cell;
@@ -25,6 +26,7 @@ export interface CellsState {
 
 const initialState: CellsState = {
   status: "idle",
+  title: "",
   ids: [],
   data: {},
   error: null,
@@ -70,7 +72,6 @@ const cellsSlice = createSlice({
         };
       },
     },
-
     updateCell(state, action: PayloadAction<{ id: string; content: string }>) {
       const { id, content } = action.payload;
       state.data[id].content = content;
@@ -99,10 +100,19 @@ const cellsSlice = createSlice({
       state.ids = [];
       state.data = {};
     },
+    updateTitle(state, action: PayloadAction<string>) {
+      state.title = action.payload;
+    },
   },
 });
 
 export default cellsSlice.reducer;
 
-export const { insertCellAfter, updateCell, moveCell, deleteCell, clearCells } =
-  cellsSlice.actions;
+export const {
+  insertCellAfter,
+  updateCell,
+  moveCell,
+  deleteCell,
+  clearCells,
+  updateTitle,
+} = cellsSlice.actions;
