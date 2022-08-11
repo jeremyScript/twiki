@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/typed-hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/useTypedHooks";
 import useCumulativeCode from "../../hooks/useCumulativeCode";
 import { createBundle } from "../../state/bundlesSlice";
 import { updateCell } from "../../state/cellsSlice";

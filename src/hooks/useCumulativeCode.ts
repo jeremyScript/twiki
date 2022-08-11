@@ -1,4 +1,4 @@
-import { useAppSelector } from "./typed-hooks";
+import { useAppSelector } from "./useTypedHooks";
 import { selectOrderedCells } from "../state/cellsSlice";
 
 const useCumulativeCode = (id: string) => {
