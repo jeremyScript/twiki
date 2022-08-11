@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useLogIn from "../../hooks/useLogIn";
 import Main from "../../components/main/Main";
 
 import styles from "./LogIn.module.css";
@@ -6,10 +7,11 @@ import styles from "./LogIn.module.css";
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { logIn, isPending, error } = useLogIn();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO
+    logIn(email, password);
   };
 
   return (
@@ -54,9 +56,17 @@ const LogIn = () => {
             alt="password"
           />
         </div>
-        <button className={styles["btn"]} type="submit">
-          Log in
-        </button>
+        {!isPending && (
+          <button className={styles["btn"]} type="submit">
+            Log in
+          </button>
+        )}
+        {isPending && (
+          <button className={styles["btn"]} type="submit">
+            Logging in
+          </button>
+        )}
+        {error && <p>{error}</p>}
       </form>
     </Main>
   );
