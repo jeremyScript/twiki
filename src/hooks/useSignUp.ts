@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/config";
+import { userLoggedIn } from "../state/userSlice";
+import { useAppDispatch } from "./typed-hooks";
 
 const useSignUp = () => {
+  const dispatch = useAppDispatch();
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
 
@@ -17,15 +20,23 @@ const useSignUp = () => {
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
-      console.log("res.user", res.user);
-
       if (!res || !res.user) {
         throw new Error("Could not complete the request");
       }
 
-      await updateProfile(res.user, {
+      const user = res.user;
+
+      await updateProfile(user, {
         displayName,
       });
+
+      dispatch(
+        userLoggedIn({
+          uid: user.uid,
+          email: user.email || "",
+          displayName: user.displayName || "",
+        })
+      );
 
       setIsPending(false);
       setError(null);
