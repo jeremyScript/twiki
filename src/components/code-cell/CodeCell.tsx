@@ -1,16 +1,16 @@
 import { useEffect } from "react";
-import { createBundle } from "../../state/bundlesSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/typed-hooks";
+import useCumulativeCode from "../../hooks/useCumulativeCode";
+import { createBundle } from "../../state/bundlesSlice";
 import { updateCell } from "../../state/cellsSlice";
 import { RootState } from "../../state/store";
-import Preview from "./Preview";
-import CodeEditor from "./CodeEditor";
 import Resizable from "./Resizable";
+import CodeEditor from "./CodeEditor";
+import Preview from "./Preview";
 import Label from "../ui/Label";
 import Loader from "../ui/Loader";
 
 import styles from "./CodeCell.module.css";
-import useCumulativeCode from "../../hooks/use-cumulative-code";
 
 interface CodeCellProps {
   id: string;
