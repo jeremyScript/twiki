@@ -52,9 +52,13 @@ const bundlesSlice = createSlice({
         error: error,
       };
     },
+    clearBundles(state) {
+      return {};
+    },
   },
 });
 
 export default bundlesSlice.reducer;
 
-export const { bundleStarted, bundleFinished } = bundlesSlice.actions;
+export const { bundleStarted, bundleFinished, clearBundles } =
+  bundlesSlice.actions;

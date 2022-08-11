@@ -95,10 +95,14 @@ const cellsSlice = createSlice({
       state.ids = state.ids.filter((cellId) => cellId !== id);
       delete state.data[id];
     },
+    clearCells(state) {
+      state.ids = [];
+      state.data = {};
+    },
   },
 });
 
 export default cellsSlice.reducer;
 
-export const { insertCellAfter, updateCell, moveCell, deleteCell } =
+export const { insertCellAfter, updateCell, moveCell, deleteCell, clearCells } =
   cellsSlice.actions;
