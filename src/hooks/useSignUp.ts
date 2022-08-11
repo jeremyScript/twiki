@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useAppDispatch } from "./typed-hooks";
 import { userLoggedIn } from "../state/userSlice";
 
 const useSignUp = () => {
-  const dispatch = useAppDispatch();
-
+  const [isCancelled, setIsCancelled] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
+
+  const dispatch = useAppDispatch();
 
   const signUp = async (
     displayName: string,
@@ -31,22 +32,30 @@ const useSignUp = () => {
         displayName,
       });
 
-      dispatch(
-        userLoggedIn({
-          uid: user.uid!,
-          email: user.email!,
-          displayName: user.displayName!,
-        })
-      );
+      if (!isCancelled) {
+        dispatch(
+          userLoggedIn({
+            uid: user.uid!,
+            email: user.email!,
+            displayName: user.displayName!,
+          })
+        );
 
-      setIsPending(false);
-      setError(null);
+        setIsPending(false);
+        setError(null);
+      }
     } catch (err: any) {
-      console.error(err.message);
-      setError(err.message);
-      setIsPending(false);
+      if (!isCancelled) {
+        console.error(err.message);
+        setError(err.message);
+        setIsPending(false);
+      }
     }
   };
+
+  useEffect(() => {
+    return () => setIsCancelled(true);
+  }, []);
 
   return { signUp, isPending, error };
 };
