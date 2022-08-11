@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "./useTypedHooks";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useAppDispatch } from "./useTypedHooks";
 import { userLoggedIn } from "../state/userSlice";
 
 const useLogIn = () => {
@@ -10,7 +9,6 @@ const useLogIn = () => {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const logIn = async (email: string, password: string) => {
@@ -37,7 +35,6 @@ const useLogIn = () => {
 
         setError(null);
         setIsPending(false);
-        navigate("/", { replace: true });
       }
     } catch (err: any) {
       if (!isCancelled) {
