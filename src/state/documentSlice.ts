@@ -4,8 +4,15 @@ import {
   nanoid,
   PayloadAction,
 } from "@reduxjs/toolkit";
-
-import { RootState } from "./store";
+import { AppDispatch, RootState } from "./store";
+import {
+  collection,
+  doc,
+  addDoc,
+  setDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { db } from "../firebase/config";
 
 export type CellType = "code" | "text";
 
@@ -16,31 +23,24 @@ export interface Cell {
 }
 
 export interface DocumentState {
-  pending: boolean;
   docId: string;
   title: string;
   order: string[];
   data: {
     [id: string]: Cell;
   };
+  pending: boolean;
   error: string | null;
 }
 
 const initialState: DocumentState = {
-  pending: false,
   docId: "",
   title: "",
   order: [],
   data: {},
+  pending: false,
   error: null,
 };
-
-export const selectIds = (state: RootState) => state.document.order;
-export const selectCells = (state: RootState) => state.document.data;
-export const selectOrderedCells = createSelector(
-  [selectIds, selectCells],
-  (ids, cells) => ids.map((id) => cells[id])
-);
 
 const documentSlice = createSlice({
   name: "document",
@@ -106,8 +106,17 @@ const documentSlice = createSlice({
     updateTitle(state, action: PayloadAction<string>) {
       state.title = action.payload;
     },
-    saveInitiated(state) {
+    saveDocInitiated(state) {
       state.pending = true;
+      state.error = null;
+    },
+    saveDocFinished(state, action: PayloadAction<string>) {
+      state.docId = action.payload;
+      state.pending = false;
+      state.error = null;
+    },
+    saveDocError(state, action: PayloadAction<string>) {
+      state.error = action.payload;
     },
   },
 });
@@ -121,5 +130,46 @@ export const {
   deleteCell,
   clearCells,
   updateTitle,
-  saveInitiated,
+  saveDocInitiated,
+  saveDocFinished,
+  saveDocError,
 } = documentSlice.actions;
+
+export const selectIds = (state: RootState) => state.document.order;
+export const selectCells = (state: RootState) => state.document.data;
+export const selectOrderedCells = createSelector(
+  [selectIds, selectCells],
+  (ids, cells) => ids.map((id) => cells[id])
+);
+
+export const saveDoc = () => {
+  return async (dispatch: AppDispatch, getState: () => RootState) => {
+    dispatch(saveDocInitiated());
+    const {
+      document: { docId, title, order, data },
+    } = getState();
+
+    let res;
+
+    try {
+      if (docId) {
+        await setDoc(doc(db, "documents", docId), {
+          title,
+          order,
+          data,
+          timestamp: serverTimestamp(),
+        });
+      } else {
+        res = await addDoc(collection(db, "documents"), {
+          title,
+          order,
+          data,
+          timestamp: serverTimestamp(),
+        });
+      }
+      dispatch(saveDocFinished(res ? res.id : docId));
+    } catch (err: any) {
+      dispatch(saveDocError(err.message));
+    }
+  };
+};
