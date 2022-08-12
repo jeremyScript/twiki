@@ -5,13 +5,7 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "./store";
-import {
-  collection,
-  doc,
-  addDoc,
-  setDoc,
-  serverTimestamp,
-} from "firebase/firestore";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 export type CellType = "code" | "text";
@@ -23,7 +17,7 @@ export interface Cell {
 }
 
 export interface DocumentState {
-  docId: string;
+  did: string;
   title: string;
   order: string[];
   data: {
@@ -34,7 +28,7 @@ export interface DocumentState {
 }
 
 const initialState: DocumentState = {
-  docId: "",
+  did: "",
   title: "",
   order: [],
   data: {},
@@ -111,13 +105,14 @@ const documentSlice = createSlice({
       state.error = null;
     },
     saveDocFinished(state, action: PayloadAction<string>) {
-      state.docId = action.payload;
+      state.did = action.payload;
       state.pending = false;
       state.error = null;
     },
     saveDocError(state, action: PayloadAction<string>) {
       state.error = action.payload;
     },
+    fetchDocInitiated(state, action: PayloadAction<string>) {},
   },
 });
 
@@ -145,29 +140,23 @@ export const selectOrderedCells = createSelector(
 export const saveDoc = () => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
     dispatch(saveDocInitiated());
-    const {
-      document: { docId, title, order, data },
+    let {
+      document: { did, title, order, data },
+      user: { currentUser: uid },
     } = getState();
 
-    let res;
+    did = did || nanoid();
 
     try {
-      if (docId) {
-        await setDoc(doc(db, "documents", docId), {
-          title,
-          order,
-          data,
-          timestamp: serverTimestamp(),
-        });
-      } else {
-        res = await addDoc(collection(db, "documents"), {
-          title,
-          order,
-          data,
-          timestamp: serverTimestamp(),
-        });
-      }
-      dispatch(saveDocFinished(res ? res.id : docId));
+      await setDoc(doc(db, "documents", did), {
+        uid,
+        did,
+        title,
+        order,
+        data,
+        timestamp: serverTimestamp(),
+      });
+      dispatch(saveDocFinished(did));
     } catch (err: any) {
       dispatch(saveDocError(err.message));
     }
