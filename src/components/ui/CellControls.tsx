@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../../hooks/useTypedHooks";
-import { deleteCell, moveCell } from "../../state/cellsSlice";
+import { deleteCell, moveCell } from "../../state/documentSlice";
 import styles from "./CellControls.module.css";
 
 interface CellControlsProps {

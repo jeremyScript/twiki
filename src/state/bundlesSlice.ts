@@ -16,7 +16,7 @@ const initialState: BundlesState = {};
 
 export const createBundle = (cellId: string, input: string) => {
   return async (dispatch: AppDispatch) => {
-    dispatch(bundleStarted(cellId));
+    dispatch(bundleInitiated(cellId));
 
     const result = await bundle(input);
     dispatch(
@@ -33,7 +33,7 @@ const bundlesSlice = createSlice({
   name: "bundles",
   initialState,
   reducers: {
-    bundleStarted(state, action: PayloadAction<string>) {
+    bundleInitiated(state, action: PayloadAction<string>) {
       const id = action.payload;
       state[id] = {
         bundling: true,
@@ -60,5 +60,5 @@ const bundlesSlice = createSlice({
 
 export default bundlesSlice.reducer;
 
-export const { bundleStarted, bundleFinished, clearBundles } =
+export const { bundleInitiated, bundleFinished, clearBundles } =
   bundlesSlice.actions;
