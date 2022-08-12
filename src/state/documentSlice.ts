@@ -4,6 +4,7 @@ import {
   nanoid,
   PayloadAction,
 } from "@reduxjs/toolkit";
+
 import { RootState } from "./store";
 
 export type CellType = "code" | "text";
@@ -14,33 +15,35 @@ export interface Cell {
   content: string;
 }
 
-export interface CellsState {
-  status: string;
+export interface DocumentState {
+  pending: boolean;
+  docId: string;
   title: string;
-  ids: string[];
+  order: string[];
   data: {
     [id: string]: Cell;
   };
   error: string | null;
 }
 
-const initialState: CellsState = {
-  status: "idle",
+const initialState: DocumentState = {
+  pending: false,
+  docId: "",
   title: "",
-  ids: [],
+  order: [],
   data: {},
   error: null,
 };
 
-export const selectIds = (state: RootState) => state.cells.ids;
-export const selectCells = (state: RootState) => state.cells.data;
+export const selectIds = (state: RootState) => state.document.order;
+export const selectCells = (state: RootState) => state.document.data;
 export const selectOrderedCells = createSelector(
   [selectIds, selectCells],
   (ids, cells) => ids.map((id) => cells[id])
 );
 
-const cellsSlice = createSlice({
-  name: "cells",
+const documentSlice = createSlice({
+  name: "document",
   initialState,
   reducers: {
     insertCellAfter: {
@@ -59,8 +62,8 @@ const cellsSlice = createSlice({
           content: "",
         };
         state.data[id] = cell;
-        const index = prevCellId ? state.ids.indexOf(prevCellId) + 1 : 0;
-        state.ids.splice(index, 0, id);
+        const index = prevCellId ? state.order.indexOf(prevCellId) + 1 : 0;
+        state.order.splice(index, 0, id);
       },
       prepare(type, prevCellId) {
         return {
@@ -81,32 +84,35 @@ const cellsSlice = createSlice({
       action: PayloadAction<{ id: string; direction: "up" | "down" }>
     ) {
       const { id, direction } = action.payload;
-      const { ids } = state;
-      const index = ids.indexOf(id);
+      const { order } = state;
+      const index = order.indexOf(id);
       if (direction === "up") {
         if (index === 0) return state;
-        [ids[index], ids[index - 1]] = [ids[index - 1], ids[index]];
+        [order[index], order[index - 1]] = [order[index - 1], order[index]];
       } else {
-        if (index === ids.length - 1) return state;
-        [ids[index], ids[index + 1]] = [ids[index + 1], ids[index]];
+        if (index === order.length - 1) return state;
+        [order[index], order[index + 1]] = [order[index + 1], order[index]];
       }
     },
     deleteCell(state, action: PayloadAction<{ id: string }>) {
       const { id } = action.payload;
-      state.ids = state.ids.filter((cellId) => cellId !== id);
+      state.order = state.order.filter((cellId) => cellId !== id);
       delete state.data[id];
     },
     clearCells(state) {
-      state.ids = [];
+      state.order = [];
       state.data = {};
     },
     updateTitle(state, action: PayloadAction<string>) {
       state.title = action.payload;
     },
+    saveInitiated(state) {
+      state.pending = true;
+    },
   },
 });
 
-export default cellsSlice.reducer;
+export default documentSlice.reducer;
 
 export const {
   insertCellAfter,
@@ -115,4 +121,5 @@ export const {
   deleteCell,
   clearCells,
   updateTitle,
-} = cellsSlice.actions;
+  saveInitiated,
+} = documentSlice.actions;

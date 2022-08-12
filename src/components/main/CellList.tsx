@@ -3,7 +3,7 @@ import CellListItem from "./CellListItem";
 import AddCell from "../ui/AddCell";
 
 const CellList = () => {
-  const cellIds = useAppSelector((state) => state.cells.ids);
+  const cellIds = useAppSelector((state) => state.document.order);
 
   let renderedCellItems = null;
 

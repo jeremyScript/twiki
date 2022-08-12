@@ -1,11 +1,11 @@
 import { useAppDispatch, useAppSelector } from "../../hooks/useTypedHooks";
-import { updateTitle } from "../../state/cellsSlice";
+import { updateTitle } from "../../state/documentSlice";
 
 import styles from "./PageTitle.module.css";
 
 const PageTitle: React.FC = () => {
   const dispatch = useAppDispatch();
-  const title = useAppSelector((state) => state.cells.title);
+  const title = useAppSelector((state) => state.document.title);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(updateTitle(e.target.value));

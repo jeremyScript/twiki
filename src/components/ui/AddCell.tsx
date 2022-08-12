@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../../hooks/useTypedHooks";
-import { insertCellAfter } from "../../state/cellsSlice";
+import { insertCellAfter } from "../../state/documentSlice";
 import styles from "./AddCell.module.css";
 
 interface AddCellProps {

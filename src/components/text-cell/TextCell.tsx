@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useAppDispatch } from "../../hooks/useTypedHooks";
-import { updateCell } from "../../state/cellsSlice";
+import { updateCell } from "../../state/documentSlice";
 import MDEditor from "@uiw/react-md-editor";
 import Label from "../ui/Label";
 

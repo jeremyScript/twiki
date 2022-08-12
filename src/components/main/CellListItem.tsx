@@ -11,7 +11,7 @@ interface CellListItemProps {
 }
 
 const CellListItem: React.FC<CellListItemProps> = ({ id }) => {
-  const { type, content } = useAppSelector((state) => state.cells.data[id]);
+  const { type, content } = useAppSelector((state) => state.document.data[id]);
 
   const renderedCell =
     type === "code" ? (
