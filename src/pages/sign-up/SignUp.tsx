@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks/useTypedHooks";
-import useSignUp from "../../hooks/useSignUp";
+import useAuth from "../../hooks/useAuth";
 import Main from "../../components/main/Main";
 
 import styles from "./SignUp.module.css";
@@ -10,7 +10,7 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signUp, isPending, error } = useSignUp();
+  const { signUp, isPending, error } = useAuth();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

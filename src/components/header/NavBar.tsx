@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../hooks/useTypedHooks";
-import useLogOut from "../../hooks/useLogOut";
+import useAuth from "../../hooks/useAuth";
 
 import styles from "./NavBar.module.css";
 
 const NavBar = () => {
   const isLoggedIn = Boolean(useAppSelector((state) => state.user.currentUser));
-  const { logOut } = useLogOut();
+  const { logOut } = useAuth();
 
   return (
     <nav className={styles["nav"]}>
