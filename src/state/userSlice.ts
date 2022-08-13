@@ -20,7 +20,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    authHasChanged(state, action: PayloadAction<User | null>) {
+    updateUser(state, action: PayloadAction<User | null>) {
       if (action.payload) {
         const { uid, email, displayName } = action.payload;
         state.currentUser = {
@@ -33,21 +33,9 @@ const userSlice = createSlice({
       }
       state.isAuthReady = true;
     },
-    userLoggedIn(state, action: PayloadAction<User>) {
-      const { uid, email, displayName } = action.payload;
-      state.currentUser = {
-        uid,
-        email,
-        displayName,
-      };
-    },
-    userLoggedOut(state) {
-      state.currentUser = null;
-    },
   },
 });
 
 export default userSlice.reducer;
 
-export const { authHasChanged, userLoggedIn, userLoggedOut } =
-  userSlice.actions;
+export const { updateUser } = userSlice.actions;
