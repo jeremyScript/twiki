@@ -6,16 +6,22 @@ const DocumentControls = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <div>
-      <button className={styles["control-btn"]}>New</button>
+    <div className={styles["document-controls"]}>
+      <button className={`${styles["control-btn"]} ${styles["new"]}`}>
+        New
+      </button>
       <button
-        className={styles["control-btn"]}
+        className={`${styles["control-btn"]} ${styles["save"]}`}
         onClick={() => dispatch(saveDoc())}
       >
         Save
       </button>
-      <button className={styles["control-btn"]}>Load</button>
-      <button className={styles["control-btn"]}>Delete</button>
+      <button className={`${styles["control-btn"]} ${styles["load"]}`}>
+        Load
+      </button>
+      <button className={`${styles["control-btn"]} ${styles["delete"]}`}>
+        Delete
+      </button>
     </div>
   );
 };

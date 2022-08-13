@@ -1,0 +1,16 @@
+.document-controls {
+  display: inline-block;
+  margin: 0 0 1rem;
+}
+
+.control-btn + .control-btn {
+  margin-left: 0.75rem;
+}
+
+.control-btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  width: 3.25rem;
+  height: 1.5rem;
+}
