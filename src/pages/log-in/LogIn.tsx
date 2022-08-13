@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks/useTypedHooks";
-import useLogIn from "../../hooks/useLogIn";
+import useAuth from "../../hooks/useAuth";
 import Main from "../../components/main/Main";
 
 import styles from "./LogIn.module.css";
@@ -9,7 +9,7 @@ import styles from "./LogIn.module.css";
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { logIn, isPending, error } = useLogIn();
+  const { logIn, isPending, error } = useAuth();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
