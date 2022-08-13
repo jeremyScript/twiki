@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/config";
-import { userLoggedOut } from "../state/userSlice";
+import { updateUser } from "../state/userSlice";
 import { useAppDispatch } from "./useTypedHooks";
 
 const useLogOut = () => {
@@ -18,7 +18,7 @@ const useLogOut = () => {
     try {
       await signOut(auth);
       if (!isCancelled) {
-        dispatch(userLoggedOut());
+        dispatch(updateUser(null));
         setIsPending(false);
         setError(null);
       }

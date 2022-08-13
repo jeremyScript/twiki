@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "./hooks/useTypedHooks";
 import { auth } from "./firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
-import { authHasChanged } from "./state/userSlice";
+import { updateUser } from "./state/userSlice";
 import Home from "./pages/home/Home";
 import SignUp from "./pages/sign-up/SignUp";
 import LogIn from "./pages/log-in/LogIn";
@@ -19,14 +19,14 @@ function App() {
     const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch(
-          authHasChanged({
+          updateUser({
             uid: user.uid!,
             email: user.email || "",
             displayName: user.displayName || "",
           })
         );
       } else {
-        dispatch(authHasChanged(null));
+        dispatch(updateUser(null));
       }
     });
     return () => unsub();

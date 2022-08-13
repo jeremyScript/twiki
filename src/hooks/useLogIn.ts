@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { auth } from "../firebase/config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useAppDispatch } from "./useTypedHooks";
-import { userLoggedIn } from "../state/userSlice";
+import { updateUser } from "../state/userSlice";
 
 const useLogIn = () => {
   const [isCancelled, setIsCancelled] = useState(false);
@@ -26,7 +26,7 @@ const useLogIn = () => {
         const user = res.user;
 
         dispatch(
-          userLoggedIn({
+          updateUser({
             uid: user.uid!,
             email: user.email!,
             displayName: user.displayName!,
