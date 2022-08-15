@@ -2,12 +2,10 @@ import useFireStore from "../../hooks/useFirestore";
 import styles from "./DocumentControls.module.css";
 
 interface DocumentControlsProps {
-  handleLoadButtonClick: () => void;
+  showModal: () => void;
 }
 
-const DocumentControls: React.FC<DocumentControlsProps> = ({
-  handleLoadButtonClick,
-}) => {
+const DocumentControls: React.FC<DocumentControlsProps> = ({ showModal }) => {
   const { saveDocument, deleteDocument, isPending, error } = useFireStore();
 
   return (
@@ -23,7 +21,7 @@ const DocumentControls: React.FC<DocumentControlsProps> = ({
       </button>
       <button
         className={`${styles["control-btn"]} ${styles["load"]}`}
-        onClick={handleLoadButtonClick}
+        onClick={showModal}
       >
         Load
       </button>
