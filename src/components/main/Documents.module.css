@@ -1,0 +1,19 @@
+.load-documents {
+  position: absolute;
+  top: 25vh;
+  bottom: 20vh;
+  left: 20vw;
+  right: 20vw;
+  z-index: 400;
+  background-color: ivory;
+  border-radius: 10px;
+}
+
+.header {
+}
+
+.document-list {
+}
+
+.document {
+}
