@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../hooks/useTypedHooks";
-import { updateTitle } from "../../state/documentSlice";
+import { updateDocument } from "../../state/documentSlice";
 
 import styles from "./PageTitle.module.css";
 
@@ -8,7 +8,7 @@ const PageTitle: React.FC = () => {
   const title = useAppSelector((state) => state.document.title);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(updateTitle(e.target.value));
+    dispatch(updateDocument({ title: e.target.value }));
   };
 
   return (
