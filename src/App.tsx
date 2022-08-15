@@ -21,8 +21,8 @@ function App() {
         dispatch(
           updateUser({
             uid: user.uid!,
-            email: user.email || "",
-            displayName: user.displayName || "",
+            email: user.email!,
+            displayName: user.displayName!,
           })
         );
       } else {

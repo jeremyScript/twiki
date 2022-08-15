@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { auth, db } from "../firebase/config";
+import { auth } from "../firebase/config";
 import {
   createUserWithEmailAndPassword,
   updateProfile,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
 import { useAppDispatch } from "./useTypedHooks";
 import { updateUser } from "../state/userSlice";
 
@@ -36,14 +35,6 @@ const useAuth = () => {
 
       await updateProfile(user, {
         displayName,
-      });
-
-      await setDoc(doc(db, "users", user.uid), {
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        lastSavedDocId: "",
-        savedDocuments: [],
       });
 
       if (!isCancelled) {
