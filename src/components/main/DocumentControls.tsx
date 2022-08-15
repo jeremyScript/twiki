@@ -1,9 +1,14 @@
-import { useAppDispatch } from "../../hooks/useTypedHooks";
-import { saveDoc } from "../../state/documentSlice";
+import useFireStore from "../../hooks/useFirestore";
 import styles from "./DocumentControls.module.css";
 
-const DocumentControls = () => {
-  const dispatch = useAppDispatch();
+interface DocumentControlsProps {
+  handleLoadButtonClick: () => void;
+}
+
+const DocumentControls: React.FC<DocumentControlsProps> = ({
+  handleLoadButtonClick,
+}) => {
+  const { saveDocument, deleteDocument, isPending, error } = useFireStore();
 
   return (
     <div className={styles["document-controls"]}>
@@ -12,11 +17,14 @@ const DocumentControls = () => {
       </button>
       <button
         className={`${styles["control-btn"]} ${styles["save"]}`}
-        onClick={() => dispatch(saveDoc())}
+        onClick={() => saveDocument()}
       >
         Save
       </button>
-      <button className={`${styles["control-btn"]} ${styles["load"]}`}>
+      <button
+        className={`${styles["control-btn"]} ${styles["load"]}`}
+        onClick={handleLoadButtonClick}
+      >
         Load
       </button>
       <button className={`${styles["control-btn"]} ${styles["delete"]}`}>

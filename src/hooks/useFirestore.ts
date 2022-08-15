@@ -1,14 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { useAppDispatch, useAppSelector } from "./useTypedHooks";
 import { db } from "../firebase/config";
-import {
-  doc,
-  setDoc,
-  updateDoc,
-  serverTimestamp,
-  arrayUnion,
-} from "firebase/firestore";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { updateDocument } from "../state/documentSlice";
 
 const useFireStore = () => {
   const [isPending, setIsPending] = useState(false);
@@ -37,10 +32,11 @@ const useFireStore = () => {
         timestamp: serverTimestamp(),
       });
 
-      await updateDoc(doc(db, "users", uid), {
-        lastSavedDocId: did,
-        savedDocuments: arrayUnion(uid),
-      });
+      dispatch(
+        updateDocument({
+          did,
+        })
+      );
     } catch (err: any) {
       setError(err.message);
       setIsPending(false);
