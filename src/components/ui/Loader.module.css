@@ -1,7 +1,7 @@
 .loader-wrapper {
+  position: relative;
   width: 100%;
   height: 100%;
-  position: relative;
   animation: fadeIn 0.5s;
 }
 
@@ -18,15 +18,14 @@
 }
 
 .loader {
-  margin: -22.5px auto;
-  top: 45%;
+  position: relative;
+  top: 40%;
   transform: translateY(-50%);
+  margin: 0 auto;
   height: 125px;
   width: 100px;
   border-radius: 55px 55px 10px 10px;
-  position: relative;
   background: #ff3d00;
-
   background-image: linear-gradient(
     0deg,
     #f63a99 25%,
@@ -50,7 +49,7 @@
   left: 10px;
   bottom: 15px;
   width: 15px;
-  height: 100px;
+  height: 85px;
   border-radius: 50px;
   background: rgba(255, 255, 255, 0.5);
 }
@@ -75,11 +74,11 @@
 }
 
 .loading {
+  position: absolute;
   font-size: 1rem;
   display: inline-block;
-  position: absolute;
   left: 50%;
-  bottom: 10%;
+  bottom: 12.5%;
   transform: translateX(-50%);
   color: #000;
 }
@@ -92,10 +91,10 @@
   position: absolute;
   bottom: 5px;
   right: -5px;
-  animation: animloader 1s linear infinite;
+  animation: loading 1s linear infinite;
 }
 
-@keyframes animloader {
+@keyframes loading {
   0% {
     box-shadow: 5px 0 #fff, 10px 0 #fff;
   }
