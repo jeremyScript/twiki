@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/useTypedHooks";
 import { db } from "../../firebase/config";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { DocumentState, updateDocument } from "../../state/documentSlice";
+import Loader from "../ui/Loader";
 
 import styles from "./Documents.module.css";
 
@@ -11,11 +12,11 @@ interface DocumentsProps {
 }
 
 const Documents: React.FC<DocumentsProps> = ({ closeModal }) => {
-  const uid = useAppSelector((state) => state.user.currentUser?.uid);
   const [documents, setDocuments] = useState<DocumentState[]>([]);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
 
+  const uid = useAppSelector((state) => state.user.currentUser?.uid);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -46,11 +47,12 @@ const Documents: React.FC<DocumentsProps> = ({ closeModal }) => {
 
   const renderedDocuments = documents.map((document) => (
     <div
-      className={styles["document"]}
       key={document.did}
+      className={styles["document"]}
       onClick={() => handleDocumentClick(document)}
     >
-      {document.title}
+      <img className={styles["icon"]} src="document-icon.svg" alt="document" />
+      <span className={styles["title"]}>{document.title}</span>
     </div>
   ));
 
@@ -59,10 +61,12 @@ const Documents: React.FC<DocumentsProps> = ({ closeModal }) => {
       <div className={styles["load-documents"]}>
         <h2 className={styles["header"]}>Saved Documents</h2>
         <hr />
-        {isPending && <p>Loading</p>}
+        {isPending && <Loader />}
         {error && <p>{error}</p>}
         {!isPending && !error && (
-          <ul className={styles["document-list"]}>{renderedDocuments}</ul>
+          <div className={styles["documents"]}>
+            <ul className={styles["document-list"]}>{renderedDocuments}</ul>
+          </div>
         )}
       </div>
     </>
