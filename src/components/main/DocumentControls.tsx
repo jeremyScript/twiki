@@ -1,4 +1,7 @@
 import useFireStore from "../../hooks/useFirestore";
+import { useAppDispatch } from "../../hooks/useTypedHooks";
+import { clearBundles } from "../../state/bundlesSlice";
+import { clearDocument } from "../../state/documentSlice";
 import styles from "./DocumentControls.module.css";
 
 interface DocumentControlsProps {
@@ -7,10 +10,17 @@ interface DocumentControlsProps {
 
 const DocumentControls: React.FC<DocumentControlsProps> = ({ showModal }) => {
   const { saveDocument, deleteDocument, isPending, error } = useFireStore();
+  const dispatch = useAppDispatch();
 
   return (
     <div className={styles["document-controls"]}>
-      <button className={`${styles["control-btn"]} ${styles["new"]}`}>
+      <button
+        className={`${styles["control-btn"]} ${styles["new"]}`}
+        onClick={() => {
+          dispatch(clearDocument());
+          dispatch(clearBundles());
+        }}
+      >
         New
       </button>
       <button

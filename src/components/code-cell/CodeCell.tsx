@@ -19,6 +19,9 @@ interface CodeCellProps {
 
 const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
   const dispatch = useAppDispatch();
+  const fetchedValue = useAppSelector(
+    (state) => state.document.data[id].content
+  );
 
   const selectBundle = (state: RootState) => state.bundles[id];
   const bundle = useAppSelector(selectBundle);
@@ -49,7 +52,10 @@ const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
       <div className={styles["code-cell"]}>
         <Label label="Code Editor" />
         <Resizable direction="horizontal">
-          <CodeEditor initialValue="" handleInputChange={handleInputChange} />
+          <CodeEditor
+            initialValue={fetchedValue}
+            handleInputChange={handleInputChange}
+          />
         </Resizable>
         <div className={styles["preview-wrapper"]}>
           {!bundle || bundle.bundling ? (
