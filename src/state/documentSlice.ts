@@ -105,8 +105,8 @@ const documentSlice = createSlice({
       }>
     ) {
       const { did, title, order, data } = action.payload;
-      state.did = did || state.did;
-      state.title = title || state.title;
+      state.did = did === undefined ? state.did : did;
+      state.title = title === undefined ? state.title : title;
       state.order = order || state.order;
       state.data = data || state.data;
     },
