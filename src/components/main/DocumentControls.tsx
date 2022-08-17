@@ -25,7 +25,7 @@ const DocumentControls: React.FC<DocumentControlsProps> = ({ showModal }) => {
       </button>
       <button
         className={`${styles["control-btn"]} ${styles["save"]}`}
-        onClick={() => saveDocument()}
+        onClick={saveDocument}
       >
         Save
       </button>
@@ -35,7 +35,10 @@ const DocumentControls: React.FC<DocumentControlsProps> = ({ showModal }) => {
       >
         Load
       </button>
-      <button className={`${styles["control-btn"]} ${styles["delete"]}`}>
+      <button
+        className={`${styles["control-btn"]} ${styles["delete"]}`}
+        onClick={deleteDocument}
+      >
         Delete
       </button>
     </div>
