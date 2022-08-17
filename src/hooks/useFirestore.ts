@@ -2,8 +2,9 @@ import { useState } from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { useAppDispatch, useAppSelector } from "./useTypedHooks";
 import { db } from "../firebase/config";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-import { updateDocument } from "../state/documentSlice";
+import { doc, setDoc, serverTimestamp, deleteDoc } from "firebase/firestore";
+import { clearDocument, updateDocument } from "../state/documentSlice";
+import { clearBundles } from "../state/bundlesSlice";
 
 const useFireStore = () => {
   const [isPending, setIsPending] = useState(false);
@@ -43,11 +44,27 @@ const useFireStore = () => {
     }
   };
 
-  const loadDocument = () => {};
+  const deleteDocument = async () => {
+    setIsPending(true);
+    setError(null);
 
-  const deleteDocument = () => {};
+    const { did } = document;
 
-  return { saveDocument, loadDocument, deleteDocument, isPending, error };
+    try {
+      await deleteDoc(doc(db, "documents", did));
+
+      dispatch(clearDocument());
+      dispatch(clearBundles());
+
+      setError(null);
+      setIsPending(false);
+    } catch (err: any) {
+      setError(err.message);
+      setIsPending(false);
+    }
+  };
+
+  return { saveDocument, deleteDocument, isPending, error };
 };
 
 export default useFireStore;
