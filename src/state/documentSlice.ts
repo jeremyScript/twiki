@@ -87,9 +87,13 @@ const documentSlice = createSlice({
       state.order = state.order.filter((cellId) => cellId !== id);
       delete state.data[id];
     },
-    clearCells(state) {
-      state.order = [];
-      state.data = {};
+    clearDocument(state) {
+      return {
+        did: "",
+        title: "",
+        order: [],
+        data: {},
+      };
     },
     updateDocument(
       state,
@@ -116,7 +120,7 @@ export const {
   updateCell,
   moveCell,
   deleteCell,
-  clearCells,
+  clearDocument,
   updateDocument,
 } = documentSlice.actions;
 
