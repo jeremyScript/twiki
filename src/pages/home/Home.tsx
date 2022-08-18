@@ -33,7 +33,7 @@ const Home = () => {
       {showDocuments && <Modal handleClick={toggleModal} />}
       <CSSTransition
         in={showDocuments}
-        timeout={300}
+        timeout={200}
         classNames={transitionStyles}
         unmountOnExit
       >
