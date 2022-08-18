@@ -8,6 +8,7 @@ import Modal from "../../components/ui/Modal";
 import Documents from "../../components/main/Documents";
 
 import styles from "./Home.module.css";
+import { useAppSelector } from "../../hooks/useTypedHooks";
 
 const transitionStyles = {
   enter: styles["sliding-enter"],
@@ -18,6 +19,7 @@ const transitionStyles = {
 
 const Home = () => {
   const [showDocuments, setShowDocuments] = useState(false);
+  const isLoggedIn = Boolean(useAppSelector((state) => state.user.currentUser));
 
   const toggleModal = () => {
     setShowDocuments(!showDocuments);
@@ -25,7 +27,7 @@ const Home = () => {
 
   return (
     <Main>
-      <DocumentControls showModal={toggleModal} />
+      {isLoggedIn && <DocumentControls showModal={toggleModal} />}
       <PageTitle />
       <CellList />
       {showDocuments && <Modal handleClick={toggleModal} />}
