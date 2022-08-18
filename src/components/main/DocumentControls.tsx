@@ -1,15 +1,22 @@
-import useFireStore from "../../hooks/useFirestore";
 import { useAppDispatch } from "../../hooks/useTypedHooks";
 import { clearBundles } from "../../state/bundlesSlice";
 import { clearDocument } from "../../state/documentSlice";
+
 import styles from "./DocumentControls.module.css";
 
 interface DocumentControlsProps {
   showModal: () => void;
+  saveDocument: () => void;
+  deleteDocument: () => void;
+  informOperationType: (type: string) => void;
 }
 
-const DocumentControls: React.FC<DocumentControlsProps> = ({ showModal }) => {
-  const { saveDocument, deleteDocument, isPending, error } = useFireStore();
+const DocumentControls: React.FC<DocumentControlsProps> = ({
+  showModal,
+  saveDocument,
+  deleteDocument,
+  informOperationType,
+}) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -25,7 +32,10 @@ const DocumentControls: React.FC<DocumentControlsProps> = ({ showModal }) => {
       </button>
       <button
         className={`${styles["control-btn"]} ${styles["save"]}`}
-        onClick={saveDocument}
+        onClick={() => {
+          informOperationType("save");
+          saveDocument();
+        }}
       >
         Save
       </button>
@@ -37,7 +47,10 @@ const DocumentControls: React.FC<DocumentControlsProps> = ({ showModal }) => {
       </button>
       <button
         className={`${styles["control-btn"]} ${styles["delete"]}`}
-        onClick={deleteDocument}
+        onClick={() => {
+          informOperationType("delete");
+          deleteDocument();
+        }}
       >
         Delete
       </button>
