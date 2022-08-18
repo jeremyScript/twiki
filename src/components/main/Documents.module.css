@@ -44,6 +44,7 @@
 
 .document {
   width: 100%;
+  height: fit-content;
   grid-column: span 1;
   grid-row: span 1;
   display: flex;
@@ -56,6 +57,11 @@
 
 .title {
   color: #111820;
+}
+
+.time {
+  font-size: 0.75rem;
+  color: rgb(255, 85, 156);
 }
 
 @media screen and (min-width: 800px) {

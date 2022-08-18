@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { formatDistanceToNow } from "date-fns";
 import { useAppDispatch, useAppSelector } from "../../hooks/useTypedHooks";
 import { db } from "../../firebase/config";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -45,16 +46,29 @@ const Documents: React.FC<DocumentsProps> = ({ closeModal }) => {
     closeModal();
   };
 
-  const renderedDocuments = documents.map((document) => (
-    <div
-      key={document.did}
-      className={styles["document"]}
-      onClick={() => handleDocumentClick(document)}
-    >
-      <img className={styles["icon"]} src="document-icon.svg" alt="document" />
-      <span className={styles["title"]}>{document.title}</span>
-    </div>
-  ));
+  const renderedDocuments = documents.map((document) => {
+    const timeAgo = document.timestamp
+      ? formatDistanceToNow(document.timestamp.toDate(), { addSuffix: true })
+      : "";
+
+    return (
+      <div
+        key={document.did}
+        className={styles["document"]}
+        onClick={() => handleDocumentClick(document)}
+      >
+        <img
+          className={styles["icon"]}
+          src="document-icon.svg"
+          alt="document"
+        />
+        <div>
+          <span className={styles["title"]}>"{document.title}"</span>
+          <span className={styles["time"]}> - {timeAgo}</span>
+        </div>
+      </div>
+    );
+  });
 
   return (
     <>
