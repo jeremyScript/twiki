@@ -19,9 +19,7 @@
   cursor: pointer;
   width: 23px;
   height: 23px;
-  border: 1px solid var(--main-border-color);
-  background-color: #ffc62d;
-  background-color: #ffe54c;
+  border: 1px solid #111820;
   background-color: #f2d200;
 }
 
