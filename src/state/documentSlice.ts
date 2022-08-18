@@ -4,6 +4,7 @@ import {
   nanoid,
   PayloadAction,
 } from "@reduxjs/toolkit";
+import { Timestamp } from "firebase/firestore";
 import { RootState } from "./store";
 
 export type CellType = "code" | "text";
@@ -21,6 +22,7 @@ export interface DocumentState {
   data: {
     [id: string]: Cell;
   };
+  timestamp?: Timestamp;
 }
 
 const initialState: DocumentState = {
