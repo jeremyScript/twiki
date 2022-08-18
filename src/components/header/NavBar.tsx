@@ -5,12 +5,17 @@ import useAuth from "../../hooks/useAuth";
 import styles from "./NavBar.module.css";
 
 const NavBar = () => {
-  const isLoggedIn = Boolean(useAppSelector((state) => state.user.currentUser));
+  const user = useAppSelector((state) => state.user.currentUser);
   const { logOut } = useAuth();
 
   return (
     <nav className={styles["nav"]}>
       <ul>
+        {user && (
+          <span className={styles["welcome-user"]}>
+            hello, {user.displayName}
+          </span>
+        )}
         <li className={styles["nav-item"]}>
           <NavLink
             to="/"
@@ -19,7 +24,7 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
-        {!isLoggedIn && (
+        {!user && (
           <>
             <li className={styles["nav-item"]}>
               <NavLink
@@ -47,8 +52,7 @@ const NavBar = () => {
             </li>
           </>
         )}
-
-        {isLoggedIn && (
+        {user && (
           <li className={styles["nav-item"]}>
             <NavLink to="/" className={styles["log-out"]} onClick={logOut}>
               Log out

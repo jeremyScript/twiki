@@ -27,7 +27,7 @@ const useFireStore = () => {
       await setDoc(doc(db, "documents", did), {
         uid,
         did,
-        title,
+        title: title || "(untitled)",
         order,
         data,
         timestamp: serverTimestamp(),

@@ -8,6 +8,8 @@ import {
 } from "firebase/auth";
 import { useAppDispatch } from "./useTypedHooks";
 import { updateUser } from "../state/userSlice";
+import { clearDocument } from "../state/documentSlice";
+import { clearBundles } from "../state/bundlesSlice";
 
 const useAuth = () => {
   const [isCancelled, setIsCancelled] = useState(false);
@@ -102,6 +104,8 @@ const useAuth = () => {
         dispatch(updateUser(null));
         setIsPending(false);
         setError(null);
+        dispatch(clearDocument());
+        dispatch(clearBundles());
       }
     } catch (err: any) {
       if (!isCancelled) {
