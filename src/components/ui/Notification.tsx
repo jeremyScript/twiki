@@ -10,9 +10,14 @@ const Notification: React.FC<NotificationProps> = ({ type, message }) => {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShow(false);
-    }, 2500);
+    let timer: any;
+    if (!timer) {
+      timer = setTimeout(() => {
+        setShow(false);
+      }, 2500);
+    } else {
+      clearTimeout(timer);
+    }
 
     return () => clearTimeout(timer);
   }, []);
