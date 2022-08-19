@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { useAppDispatch, useAppSelector } from "../../hooks/useTypedHooks";
-import { db } from "../../firebase/config";
-import { collection, getDocs, query, where } from "firebase/firestore";
 import { DocumentState, updateDocument } from "../../state/documentSlice";
 import Loader from "../ui/Loader";
 
 import styles from "./Documents.module.css";
+import useFireStore from "../../hooks/useFirestore";
 
 interface DocumentsProps {
   closeModal: () => void;
@@ -14,31 +13,16 @@ interface DocumentsProps {
 
 const Documents: React.FC<DocumentsProps> = ({ closeModal }) => {
   const [documents, setDocuments] = useState<DocumentState[]>([]);
-  const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState(null);
+  const { fetchDocuments, isPending, success, error } = useFireStore();
 
   const uid = useAppSelector((state) => state.user.currentUser?.uid);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const fetchDocuments = async () => {
-      try {
-        setIsPending(true);
-        setError(null);
-        const data: any = [];
-        const q = query(collection(db, "documents"), where("uid", "==", uid));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => data.push(doc.data()));
-        setDocuments(data);
-        setError(null);
-        setIsPending(false);
-      } catch (err: any) {
-        setError(err.message);
-        setIsPending(false);
-      }
-    };
-    fetchDocuments();
-  }, [uid]);
+    if (uid) {
+      fetchDocuments(uid).then((data) => setDocuments(data));
+    }
+  }, [uid, fetchDocuments]);
 
   const handleDocumentClick = (document: DocumentState) => {
     const { did, title, order, data } = document;
@@ -76,7 +60,7 @@ const Documents: React.FC<DocumentsProps> = ({ closeModal }) => {
         <h2 className={styles["header"]}>Saved Documents</h2>
         <hr />
         {isPending && <Loader />}
-        {error && <p>{error}</p>}
+        {error && <p className={styles["error"]}>{error}</p>}
         {!isPending && !error && (
           <div className={styles["documents"]}>
             <ul className={styles["document-list"]}>{renderedDocuments}</ul>
