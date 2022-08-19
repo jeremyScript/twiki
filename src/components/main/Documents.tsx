@@ -1,22 +1,27 @@
 import { useState, useEffect } from "react";
 import { formatDistanceToNow } from "date-fns";
-import { useAppDispatch, useAppSelector } from "../../hooks/useTypedHooks";
-import { DocumentState, updateDocument } from "../../state/documentSlice";
+import { useAppSelector } from "../../hooks/useTypedHooks";
+import { DocumentState } from "../../state/documentSlice";
+import useFireStore from "../../hooks/useFirestore";
 import Loader from "../ui/Loader";
 
 import styles from "./Documents.module.css";
-import useFireStore from "../../hooks/useFirestore";
 
 interface DocumentsProps {
+  fetchDocument: (document: DocumentState) => void;
+  informOperationType: (type: string) => void;
   closeModal: () => void;
 }
 
-const Documents: React.FC<DocumentsProps> = ({ closeModal }) => {
+const Documents: React.FC<DocumentsProps> = ({
+  fetchDocument,
+  informOperationType,
+  closeModal,
+}) => {
   const [documents, setDocuments] = useState<DocumentState[]>([]);
-  const { fetchDocuments, isPending, success, error } = useFireStore();
+  const { fetchDocuments, isPending, error } = useFireStore();
 
   const uid = useAppSelector((state) => state.user.currentUser?.uid);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (uid) {
@@ -25,8 +30,8 @@ const Documents: React.FC<DocumentsProps> = ({ closeModal }) => {
   }, [uid, fetchDocuments]);
 
   const handleDocumentClick = (document: DocumentState) => {
-    const { did, title, order, data } = document;
-    dispatch(updateDocument({ did, title, order, data }));
+    fetchDocument(document);
+    informOperationType("load");
     closeModal();
   };
 
