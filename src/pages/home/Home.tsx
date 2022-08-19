@@ -38,7 +38,7 @@ const Home = () => {
   const isLoggedIn = Boolean(useAppSelector((state) => state.user.currentUser));
   const [showDocuments, setShowDocuments] = useState(false);
   const [operation, setOperation] = useState("");
-  const { saveDocument, deleteDocument, isPending, success, error } =
+  const { saveDocument, fetchDocument, deleteDocument, success, error } =
     useFireStore();
 
   const toggleModal = () => {
@@ -80,7 +80,11 @@ const Home = () => {
         classNames={transitionStyles}
         unmountOnExit
       >
-        <Documents closeModal={toggleModal} />
+        <Documents
+          fetchDocument={fetchDocument}
+          informOperationType={informOperationType}
+          closeModal={toggleModal}
+        />
       </CSSTransition>
     </Main>
   );

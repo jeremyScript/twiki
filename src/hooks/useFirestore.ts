@@ -12,7 +12,11 @@ import {
   where,
   deleteDoc,
 } from "firebase/firestore";
-import { clearDocument, updateDocument } from "../state/documentSlice";
+import {
+  clearDocument,
+  DocumentState,
+  updateDocument,
+} from "../state/documentSlice";
 import { clearBundles } from "../state/bundlesSlice";
 
 const useFireStore = () => {
@@ -82,6 +86,23 @@ const useFireStore = () => {
     return result;
   }, []);
 
+  const fetchDocument = (document: DocumentState) => {
+    try {
+      setIsPending(true);
+      setSuccess(null);
+      setError(null);
+      const { did, title, order, data } = document;
+      dispatch(updateDocument({ did, title, order, data }));
+      setSuccess(true);
+      setError(null);
+      setIsPending(false);
+    } catch (err: any) {
+      setError(err.message);
+      setSuccess(false);
+      setIsPending(false);
+    }
+  };
+
   const deleteDocument = async () => {
     setIsPending(true);
     setSuccess(null);
@@ -111,6 +132,7 @@ const useFireStore = () => {
   return {
     saveDocument,
     fetchDocuments,
+    fetchDocument,
     deleteDocument,
     isPending,
     success,
