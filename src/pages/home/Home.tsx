@@ -60,7 +60,10 @@ const Home = () => {
         />
       )}
       {error && (
-        <Notification type="error" message={notification[operation]?.error} />
+        <Notification
+          type="error"
+          message={error || notification[operation]?.error}
+        />
       )}
       {success && (
         <Notification
