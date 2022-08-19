@@ -3,19 +3,15 @@ import styles from "./Menu.module.css";
 const Menu = () => {
   return (
     <nav className={styles["sliding-menu"]}>
-      <ul className={styles["menu-contents"]}>
-        <li>
-          <button>&#43; New</button>
+      <ul className={styles["menu-list"]}>
+        <li className={styles["list-item"]}>
+          <button className={styles["btn"]}>Demo #1</button>
         </li>
-        <li>
-          <button>
-            <img src="./save.svg" height={13} alt="save" /> Save
-          </button>
+        <li className={styles["list-item"]}>
+          <button className={styles["btn"]}>Demo #2</button>
         </li>
-        <li>
-          <button>
-            <img src="./load.svg" height={13} alt="load" /> Load
-          </button>
+        <li className={styles["list-item"]}>
+          <button className={styles["btn"]}>Demo #3</button>
         </li>
       </ul>
     </nav>
