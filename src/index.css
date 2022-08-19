@@ -49,6 +49,7 @@ body {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   cursor: row-resize;
+  z-index: 100;
 }
 
 .react-resizable-handle-e {
