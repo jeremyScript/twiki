@@ -48,10 +48,10 @@ const CodeCell: React.FC<CodeCellProps> = ({ id, content }) => {
   }, [cumulativeCode, id, dispatch]);
 
   return (
-    <Resizable direction="vertical">
+    <Resizable id={id} direction="vertical">
       <div className={styles["code-cell"]}>
         <Label label="Code Editor" />
-        <Resizable direction="horizontal">
+        <Resizable id={id} direction="horizontal">
           <CodeEditor
             initialValue={fetchedValue}
             handleInputChange={handleInputChange}
