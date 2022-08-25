@@ -23,8 +23,9 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={styles["header"]}>
       <MenuIcon showMenu={showMenu} handleMenuClick={handleMenuClick} />
+      <h1 className={styles["logo"]}>tWiki</h1>
       {showMenu && <Modal handleClick={handleMenuClick} />}
       <CSSTransition
         in={showMenu}
