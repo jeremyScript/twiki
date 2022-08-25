@@ -3,6 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: 3rem;
   padding: 0.5rem 1rem;
   z-index: 500;
   min-width: 400px;
@@ -11,6 +12,13 @@
   align-items: center;
   background-color: #3dd1e7;
   background-image: linear-gradient(to top right, #3dd1e7, #0f87ff);
+}
+
+.logo {
+  margin-right: auto;
+  margin-left: 1.5rem;
+  font-size: 2rem;
+  color: var(--main-font-color);
 }
 
 .sliding-enter {
