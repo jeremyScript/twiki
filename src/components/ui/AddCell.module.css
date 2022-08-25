@@ -4,8 +4,8 @@
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  gap: 4rem;
-  margin: 0.5rem;
+  gap: calc(10rem + 2vw);
+  margin: 1rem;
   opacity: 0;
   transition: all 700ms ease-in;
 }
@@ -20,7 +20,7 @@
 
 .divider {
   position: absolute;
-  width: 100%;
+  width: 95%;
   height: 1px;
   top: calc(50% - 0.5px);
   z-index: 100;
