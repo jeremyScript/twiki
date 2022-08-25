@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import styles from "./Preview.module.css";
+import "./Preview.css";
 
 interface PreviewProps {
   code: string;
@@ -73,9 +74,9 @@ const Preview: React.FC<PreviewProps> = ({ code, bundleStatus }) => {
   }, [code, html]);
 
   return (
-    <div className={styles["preview-wrapper"]}>
+    <div className="iframe-wrapper">
       <iframe
-        className={styles.preview}
+        className={styles.iframe}
         title="iframe"
         ref={iframRef}
         srcDoc={html}

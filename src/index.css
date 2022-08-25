@@ -86,15 +86,6 @@ body {
   border: none !important;
 }
 
-.signature,
-.code {
-  display: none;
-}
-
-/* .monaco-scrollable-element .decorationsOverviewRuler {
-  opacity: 0;
-} */
-
 /* Override md-editor styles */
 
 div.w-md-editor,

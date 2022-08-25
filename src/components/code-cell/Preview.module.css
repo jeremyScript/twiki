@@ -1,22 +1,4 @@
-.preview-wrapper {
-  position: relative;
-  flex-grow: 1;
-  height: 100%;
-  pointer-events: none;
-  padding: 1rem 0 0 1rem;
-}
-
-.preview-wrapper:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  opacity: 0;
-}
-
-.preview {
+.iframe {
   height: 100%;
   width: 100%;
   border: none;
