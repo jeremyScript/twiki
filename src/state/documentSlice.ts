@@ -9,10 +9,16 @@ import { RootState } from "./store";
 
 export type CellType = "code" | "text";
 
+export interface CellProps {
+  ratio?: number;
+  height?: number;
+}
+
 export interface Cell {
   id: string;
   type: CellType;
   content: string;
+  props: CellProps;
 }
 
 export interface DocumentState {
@@ -50,6 +56,10 @@ const documentSlice = createSlice({
           id,
           type,
           content: "",
+          props: {
+            ratio: 0.5,
+            height: 300,
+          },
         };
         state.data[id] = cell;
         const index = prevCellId ? state.order.indexOf(prevCellId) + 1 : 0;
@@ -68,6 +78,14 @@ const documentSlice = createSlice({
     updateCell(state, action: PayloadAction<{ id: string; content: string }>) {
       const { id, content } = action.payload;
       state.data[id].content = content;
+    },
+    updateCellProps(
+      state,
+      action: PayloadAction<{ id: string; ratio?: number; height?: number }>
+    ) {
+      const { id, ratio, height } = action.payload;
+      if (ratio) state.data[id].props.ratio = ratio;
+      if (height) state.data[id].props.height = height;
     },
     moveCell(
       state,
@@ -120,6 +138,7 @@ export default documentSlice.reducer;
 export const {
   insertCellAfter,
   updateCell,
+  updateCellProps,
   moveCell,
   deleteCell,
   clearDocument,
