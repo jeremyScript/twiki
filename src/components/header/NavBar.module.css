@@ -20,12 +20,9 @@
 }
 
 .log-in,
-.log-out {
-  border: 1px solid #111820;
-}
-
+.log-out,
 .sign-up {
-  border: 1px solid #fcfcfc;
+  border: 1px solid #111820;
 }
 
 .nav-item a,

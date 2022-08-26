@@ -1,7 +1,7 @@
 .main {
   position: relative;
   border-radius: 10px;
-  padding: 2rem 2rem 15vh 2rem;
+  padding: 2rem calc(1rem + 1.5vw) 15vh calc(1rem + 1.5vw);
   overflow: auto;
   height: calc(100vh - 4.25rem);
   margin-top: 3.125rem;
