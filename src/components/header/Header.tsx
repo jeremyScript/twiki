@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CSSTransition } from "react-transition-group";
-
+import { Link } from "react-router-dom";
 import Menu from "./Menu";
 import MenuIcon from "./MenuIcon";
 import NavBar from "./NavBar";
@@ -25,7 +25,9 @@ const Header: React.FC = () => {
   return (
     <header className={styles["header"]}>
       <MenuIcon showMenu={showMenu} handleMenuClick={handleMenuClick} />
-      <h1 className={styles["logo"]}>tWiki</h1>
+      <h1 className={styles["logo"]}>
+        <Link to="/intro">tWiki</Link>
+      </h1>
       {showMenu && <Modal handleClick={handleMenuClick} />}
       <CSSTransition
         in={showMenu}
