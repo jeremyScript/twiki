@@ -28,7 +28,8 @@
   border: 1px solid #fcfcfc;
 }
 
-.nav-item a {
+.nav-item a,
+.log-out {
   padding: 0.5rem;
   letter-spacing: -0.5px;
   text-align: center;
@@ -37,7 +38,13 @@
   color: #111820;
 }
 
-.nav-item a:hover {
+.log-out {
+  background-color: transparent;
+  font: inherit;
+}
+
+.nav-item a:hover,
+.log-out:hover {
   color: #f2d200;
 }
 

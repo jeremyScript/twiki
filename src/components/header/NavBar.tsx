@@ -54,9 +54,9 @@ const NavBar = () => {
         )}
         {user && (
           <li className={styles["nav-item"]}>
-            <NavLink to="/" className={styles["log-out"]} onClick={logOut}>
+            <button className={styles["log-out"]} onClick={logOut}>
               Log out
-            </NavLink>
+            </button>
           </li>
         )}
       </ul>
