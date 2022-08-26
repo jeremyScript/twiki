@@ -22,8 +22,8 @@
   top: 40%;
   transform: translateY(-50%);
   margin: 0 auto;
-  height: 125px;
-  width: 100px;
+  width: 40px;
+  height: 60px;
   border-radius: 55px 55px 10px 10px;
   background: #ff3d00;
   background-image: linear-gradient(
@@ -38,7 +38,7 @@
     #70ca5c 75%
   );
   background-position: 0px 0px;
-  background-size: auto 175px;
+  background-size: auto 70px;
   background-repeat: repeat-y;
   animation: colorShift 6s linear infinite;
 }
@@ -46,10 +46,10 @@
 .loader:before {
   content: "";
   position: absolute;
-  left: 10px;
+  left: 4px;
   bottom: 15px;
-  width: 15px;
-  height: 85px;
+  width: 6px;
+  height: 34px;
   border-radius: 50px;
   background: rgba(255, 255, 255, 0.5);
 }
@@ -60,8 +60,8 @@
   left: 50%;
   top: 100%;
   transform: translateX(-50%);
-  width: 32px;
-  height: 45px;
+  width: 13px;
+  height: 25px;
   border-radius: 0 0 12px 12px;
   background: #e09c5f;
   box-shadow: 0 15px 2px rgba(0, 0, 0, 0.25) inset;
@@ -78,7 +78,7 @@
   font-size: 1rem;
   display: inline-block;
   left: 50%;
-  bottom: 12.5%;
+  bottom: 25%;
   transform: translateX(-50%);
   color: #000;
 }
