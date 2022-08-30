@@ -63,7 +63,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
             top: 10,
             bottom: 5,
           },
-          renderFinalNewline: false,
           scrollBeyondLastLine: false,
           tabSize: 2,
           wordWrap: "on",
