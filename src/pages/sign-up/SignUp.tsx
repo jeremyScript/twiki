@@ -17,11 +17,14 @@ const SignUp = () => {
     signUp(name, email, password);
   };
 
-  const isLoggedIn = Boolean(useAppSelector((state) => state.user.currentUser));
+  const currentUser = useAppSelector((state) => state.user.currentUser);
+  const isLoggedIn = Boolean(currentUser);
 
   return (
     <Main>
-      {isLoggedIn && <Navigate to="/" replace={true} />}
+      {isLoggedIn && (
+        <Navigate to={`/@${currentUser?.displayName}`} replace={true} />
+      )}
       {!isLoggedIn && (
         <form className={styles["sign-up-form"]} onSubmit={handleSubmit}>
           <h2>Create your tWiki account!</h2>

@@ -38,9 +38,12 @@ function App() {
         <>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="sign-up" element={<SignUp />} />
-            <Route path="log-in" element={<LogIn />} />
+            {["/", "/intro", "/demo"].map((path) => (
+              <Route key={path} path={path} element={<Home />} />
+            ))}
+            <Route path="/@:displayName" element={<Home />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/log-in" element={<LogIn />} />
           </Routes>
         </>
       )}
