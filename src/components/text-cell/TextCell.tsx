@@ -9,9 +9,10 @@ import styles from "./TextCell.module.css";
 interface TextCellProps {
   id: string;
   content?: string;
+  locked?: boolean;
 }
 
-const TextCell: React.FC<TextCellProps> = ({ id, content }) => {
+const TextCell: React.FC<TextCellProps> = ({ id, content, locked }) => {
   const dispatch = useAppDispatch();
   const editorRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +38,7 @@ const TextCell: React.FC<TextCellProps> = ({ id, content }) => {
     };
   }, []);
 
-  if (isEditing) {
+  if (isEditing && !locked) {
     return (
       <div
         className={`${styles["text-cell"]} ${styles["open"]}`}

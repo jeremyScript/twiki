@@ -12,6 +12,7 @@ export type CellType = "code" | "text";
 export interface CellProps {
   ratio?: number;
   height?: number;
+  locked: boolean;
 }
 
 export interface Cell {
@@ -59,6 +60,7 @@ const documentSlice = createSlice({
           props: {
             ratio: 0.5,
             height: 300,
+            locked: false,
           },
         };
         state.data[id] = cell;
@@ -81,11 +83,17 @@ const documentSlice = createSlice({
     },
     updateCellProps(
       state,
-      action: PayloadAction<{ id: string; ratio?: number; height?: number }>
+      action: PayloadAction<{
+        id: string;
+        ratio?: number;
+        height?: number;
+        locked?: boolean;
+      }>
     ) {
-      const { id, ratio, height } = action.payload;
+      const { id, ratio, height, locked } = action.payload;
       if (ratio) state.data[id].props.ratio = ratio;
       if (height) state.data[id].props.height = height;
+      if (locked) state.data[id].props.locked = locked;
     },
     moveCell(
       state,
