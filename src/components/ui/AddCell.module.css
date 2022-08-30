@@ -24,7 +24,7 @@
   height: 1px;
   top: calc(50% - 0.5px);
   z-index: 100;
-  background-color: #58595b;
+  background-color: var(--main-border-color);
 }
 
 .add-cell button {
@@ -43,8 +43,9 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  color: #111820;
+  color: var(--main-font-color--dark);
   background-color: #3dd1e7;
+  background-image: linear-gradient(to top right, #3dd1e7, #0f87ff);
   border: 0 solid #e5e7eb;
 }
 

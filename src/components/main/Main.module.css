@@ -5,5 +5,5 @@
   overflow: auto;
   height: calc(100vh - 4.25rem);
   margin-top: 3.125rem;
-  background-color: var(--main-background-color);
+  background-color: var(--main-background-color--dark);
 }

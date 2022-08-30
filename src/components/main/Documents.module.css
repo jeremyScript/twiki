@@ -16,7 +16,7 @@
   font-size: 1.25rem;
   padding: 1.5rem 1.25rem 1.25rem;
   margin: 0;
-  color: #111820;
+  color: var(--main-font-color--dark);
 }
 
 .load-documents hr {
@@ -56,7 +56,7 @@
 }
 
 .title {
-  color: #111820;
+  color: var(--main-font-color--dark);
 }
 
 .time {

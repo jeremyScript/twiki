@@ -1,4 +1,6 @@
 .document-controls {
+  position: relative;
+  top: -0.5rem;
   display: inline-block;
   margin: 0 0 1rem;
 }
@@ -10,7 +12,29 @@
 .control-btn {
   cursor: pointer;
   border: none;
+  font-weight: 700;
   border-radius: 5px;
-  width: 3.25rem;
+  width: 3.3rem;
   height: 1.5rem;
+  color: var(--main-font-color--dark);
+}
+
+.new:hover {
+  outline: 2px solid rgb(255, 85, 156);
+}
+
+.save:hover {
+  outline: 2px solid rgb(255, 156, 85);
+}
+
+.load:hover {
+  outline: 2px solid rgb(31, 193, 27);
+}
+
+.delete:hover {
+  outline: 2px solid #3dd1e7;
+}
+
+.control-btn:active {
+  transform: scale(0.95);
 }

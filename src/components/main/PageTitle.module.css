@@ -9,10 +9,10 @@
   padding: 1rem;
   font-size: 1.125rem;
   outline: none;
-  background-color: var(--main-background-color);
+  background-color: var(--main-background-color--dark);
   border-radius: var(--main-border-radius);
   border: 1px solid var(--main-border-color);
-  color: var(--preview-background-color);
+  color: var(--main-background-color--light);
 }
 
 .label {
@@ -20,8 +20,8 @@
   width: fit-content;
   padding: 0 0.125rem;
   font-size: 0.75rem;
-  color: var(--preview-background-color);
-  background-color: var(--main-background-color);
+  color: var(--main-background-color--light);
+  background-color: var(--main-background-color--dark);
 }
 
 .title-input,
