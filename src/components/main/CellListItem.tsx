@@ -11,13 +11,15 @@ interface CellListItemProps {
 }
 
 const CellListItem: React.FC<CellListItemProps> = ({ id }) => {
-  const { type, content } = useAppSelector((state) => state.document.data[id]);
+  const { type, content, props } = useAppSelector(
+    (state) => state.document.data[id]
+  );
 
   const renderedCell =
     type === "code" ? (
       <CodeCell id={id} content={content} />
     ) : (
-      <TextCell id={id} content={content} />
+      <TextCell id={id} content={content} locked={props.locked} />
     );
 
   return (
