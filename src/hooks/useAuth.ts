@@ -10,6 +10,7 @@ import { useAppDispatch } from "./useTypedHooks";
 import { updateUser } from "../state/userSlice";
 import { clearDocument } from "../state/documentSlice";
 import { clearBundles } from "../state/bundlesSlice";
+import { useNavigate } from "react-router-dom";
 
 const useAuth = () => {
   const [isCancelled, setIsCancelled] = useState(false);
@@ -17,6 +18,7 @@ const useAuth = () => {
   const [error, setError] = useState(null);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const signUp = async (
     displayName: string,
@@ -47,7 +49,8 @@ const useAuth = () => {
             displayName: user.displayName!,
           })
         );
-
+        dispatch(clearDocument());
+        dispatch(clearBundles());
         setIsPending(false);
         setError(null);
       }
@@ -73,7 +76,6 @@ const useAuth = () => {
 
       if (!isCancelled) {
         const user = res.user;
-
         dispatch(
           updateUser({
             uid: user.uid!,
@@ -81,7 +83,8 @@ const useAuth = () => {
             displayName: user.displayName!,
           })
         );
-
+        dispatch(clearDocument());
+        dispatch(clearBundles());
         setError(null);
         setIsPending(false);
       }
@@ -106,6 +109,7 @@ const useAuth = () => {
         setError(null);
         dispatch(clearDocument());
         dispatch(clearBundles());
+        navigate("/log-in", { replace: true });
       }
     } catch (err: any) {
       if (!isCancelled) {
