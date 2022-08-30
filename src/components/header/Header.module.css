@@ -24,7 +24,7 @@
   text-decoration: none;
   cursor: pointer;
   user-select: none;
-  color: var(--main-font-color);
+  color: var(--main-font-color--dark);
 }
 
 .sliding-enter {

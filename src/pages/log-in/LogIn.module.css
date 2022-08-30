@@ -14,7 +14,7 @@
 .log-in-form h2 {
   margin: 0 0 0.5rem;
   font-size: 1.125rem;
-  color: #fcfcfc;
+  color: var(--main-font-color--light);
 }
 
 .email,
@@ -69,7 +69,7 @@
 .input:not(:placeholder-shown) + .label,
 .input:focus + .label {
   cursor: pointer;
-  color: #fcfcfc;
+  color: var(--main-font-color--light);
 }
 
 .input:not(:placeholder-shown) + .label,
@@ -91,12 +91,12 @@
   border: none;
   cursor: pointer;
   transition: all 200ms;
-  color: #fcfcfc;
-  background-color: #0f87ff;
+  color: var(--main-font-color--light);
+  background-color: var(--button-color--blue);
 }
 
 .btn:hover {
-  background-color: #2b689b;
+  background-color: var(--button-color--blue--hover);
 }
 
 .btn:active {

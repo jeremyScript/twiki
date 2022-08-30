@@ -22,7 +22,7 @@
 .log-in,
 .log-out,
 .sign-up {
-  border: 1px solid #111820;
+  border: 1px solid var(--main-font-color--dark);
 }
 
 .nav-item a,
@@ -32,12 +32,14 @@
   text-align: center;
   text-decoration: none;
   user-select: none;
-  color: #111820;
+  font-weight: 700;
+  color: var(--main-font-color--dark);
 }
 
 .log-out {
   background-color: transparent;
   font: inherit;
+  font-weight: 700;
 }
 
 .nav-item a:hover,
@@ -53,5 +55,5 @@ a.isActive {
 .welcome-user {
   user-select: none;
   font-size: 0.875rem;
-  color: #fcfcfc;
+  color: var(--main-font-color--light);
 }

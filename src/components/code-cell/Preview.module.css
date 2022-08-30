@@ -4,7 +4,7 @@
   border: none;
   position: relative;
   z-index: 100;
-  background-color: #fcfcfc;
+  background-color: var(--main-background-color--light);
 }
 
 .bundling-error {

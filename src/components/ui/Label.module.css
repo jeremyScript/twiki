@@ -6,10 +6,10 @@
   font-size: 0.75rem;
   z-index: 400;
   padding: 0 0.125rem;
-  background-color: var(--main-background-color);
+  background-color: var(--main-background-color--dark);
   background-image: linear-gradient(
     to bottom,
-    var(--main-background-color),
+    var(--main-background-color--dark),
     var(--main-editor-background-color)
   );
 }
