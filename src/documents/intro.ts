@@ -25,7 +25,7 @@ const Example = () => {
 
   const fetchImages = async () => {
     setData(null);
-    const random = Math.floor(Math.random() * 5 + 1);
+    const random = Math.floor(Math.random() * 5 + 2);
     try {
       const res = await axios.get(API + random);
       setData(res.data);
