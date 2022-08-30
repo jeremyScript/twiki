@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import styles from "./Menu.module.css";
 
 const Menu = () => {
@@ -5,13 +7,14 @@ const Menu = () => {
     <nav className={styles["sliding-menu"]}>
       <ul className={styles["menu-list"]}>
         <li className={styles["list-item"]}>
-          <button className={styles["btn"]}>Demo #1</button>
+          <Link to="/intro" className={styles["link"]}>
+            Introduction
+          </Link>
         </li>
         <li className={styles["list-item"]}>
-          <button className={styles["btn"]}>Demo #2</button>
-        </li>
-        <li className={styles["list-item"]}>
-          <button className={styles["btn"]}>Demo #3</button>
+          <Link to="/demo" className={styles["link"]}>
+            Demo
+          </Link>
         </li>
       </ul>
     </nav>

@@ -26,12 +26,16 @@
   width: 95%;
 }
 
-.btn {
+.link {
+  display: block;
+  text-align: center;
   font-size: 0.85rem;
-  width: 100%;
   padding: 0.5rem;
   border-radius: 10px;
+  text-decoration: none;
+  user-select: none;
   cursor: pointer;
+  color: var(--main-font-color--dark);
   background-color: var(--main-background-color--light);
   border: 1px solid var(--main-border-color);
 }
