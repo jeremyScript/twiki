@@ -3,7 +3,6 @@ import { selectOrderedCells } from "../state/documentSlice";
 
 const useCumulativeCode = (id: string) => {
   const orderedCells = useAppSelector(selectOrderedCells);
-  const cumulativeCode: string[] = [];
 
   const showFunc = `
     import _React from 'react';
@@ -11,22 +10,20 @@ const useCumulativeCode = (id: string) => {
 
     var show = (value) => {
       const root = document.getElementById('root');
-      if (typeof value === 'object') {
-        if (value.$$typeof && value.props) {
-          _ReactDOM.render(
-            value,
-            root
-          );
-        } else {
-          root.innerHTML = JSON.stringify(value);
-        }
+      if (value.$$typeof && value.props) {
+        _ReactDOM.render(value, root);
       } else {
-        root.innerHTML = value;
+        const child = document.createElement('div');
+        child.innerHTML = typeof value === 'object'
+          ? JSON.stringify(value)
+          : value;
+        root.appendChild(child);
       }
     };
   `;
 
   const showFuncNoOp = `var show = () => {};`;
+  const cumulativeCode: string[] = [];
 
   for (let cell of orderedCells) {
     if (cell.type === "code") {
@@ -36,7 +33,9 @@ const useCumulativeCode = (id: string) => {
         cumulativeCode.push(showFuncNoOp);
       }
       cumulativeCode.push(cell.content);
-      if (cell.id === id) break;
+      if (cell.id === id) {
+        break;
+      }
     }
   }
 
