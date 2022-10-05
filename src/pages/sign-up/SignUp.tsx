@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks/useTypedHooks";
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 import Main from "../../components/main/Main";
 
 import styles from "./SignUp.module.css";

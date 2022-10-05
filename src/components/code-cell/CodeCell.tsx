@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/useTypedHooks";
-import useCumulativeCode from "../../hooks/useCumulativeCode";
+import { useCumulativeCode } from "../../hooks/useCumulativeCode";
 import { createBundle } from "../../state/bundlesSlice";
 import { updateCell } from "../../state/documentSlice";
 import { RootState } from "../../state/store";

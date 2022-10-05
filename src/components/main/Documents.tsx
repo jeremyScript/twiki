@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { useAppSelector } from "../../hooks/useTypedHooks";
 import { DocumentState } from "../../state/documentSlice";
-import useFireStore from "../../hooks/useFirestore";
+import { useFireStore } from "../../hooks/useFirestore";
 import Loader from "../ui/Loader";
 
 import styles from "./Documents.module.css";
