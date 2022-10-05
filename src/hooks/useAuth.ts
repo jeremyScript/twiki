@@ -12,7 +12,7 @@ import { clearDocument } from "../state/documentSlice";
 import { clearBundles } from "../state/bundlesSlice";
 import { useNavigate } from "react-router-dom";
 
-const useAuth = () => {
+export const useAuth = () => {
   const [isCancelled, setIsCancelled] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
@@ -126,5 +126,3 @@ const useAuth = () => {
 
   return { signUp, logIn, logOut, isPending, error };
 };
-
-export default useAuth;

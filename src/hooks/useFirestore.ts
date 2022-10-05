@@ -19,7 +19,7 @@ import {
 } from "../state/documentSlice";
 import { clearBundles } from "../state/bundlesSlice";
 
-const useFireStore = () => {
+export const useFireStore = () => {
   const [isPending, setIsPending] = useState(false);
   const [success, setSuccess] = useState<boolean | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -139,5 +139,3 @@ const useFireStore = () => {
     error,
   };
 };
-
-export default useFireStore;

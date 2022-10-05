@@ -1,7 +1,7 @@
 import { useAppSelector } from "./useTypedHooks";
 import { selectOrderedCells } from "../state/documentSlice";
 
-const useCumulativeCode = (id: string) => {
+export const useCumulativeCode = (id: string) => {
   const orderedCells = useAppSelector(selectOrderedCells);
 
   const showFunc = `
@@ -41,5 +41,3 @@ const useCumulativeCode = (id: string) => {
 
   return cumulativeCode.join("\n");
 };
-
-export default useCumulativeCode;

@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/useTypedHooks";
 import { CSSTransition } from "react-transition-group";
 import { clearDocument, updateDocument } from "../../state/documentSlice";
 import { clearBundles } from "../../state/bundlesSlice";
-import useFireStore from "../../hooks/useFirestore";
+import { useFireStore } from "../../hooks/useFirestore";
 import Main from "../../components/main/Main";
 import DocumentControls from "../../components/main/DocumentControls";
 import PageTitle from "../../components/main/PageTitle";
