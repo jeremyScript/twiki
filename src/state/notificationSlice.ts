@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type NotificationType = "info" | "error";
 
-interface NotificationState {
+export interface NotificationState {
   open: boolean;
   type: NotificationType;
   message: string;
@@ -20,7 +20,7 @@ const notificationSlice = createSlice({
   name: "notification",
   initialState,
   reducers: {
-    addNotification(
+    displayNotification(
       state,
       action: PayloadAction<{
         type: NotificationType;
@@ -29,7 +29,6 @@ const notificationSlice = createSlice({
       }>
     ) {
       const { type, message, timeout } = action.payload;
-
       state = {
         open: true,
         type,
@@ -37,7 +36,7 @@ const notificationSlice = createSlice({
         timeout,
       };
     },
-    clearNotification(state, action) {
+    clearNotification(state) {
       state = initialState;
     },
   },
@@ -45,4 +44,4 @@ const notificationSlice = createSlice({
 
 export default notificationSlice.reducer;
 
-export const { addNotification, clearNotification } = notificationSlice.actions;
+export const notificationActions = notificationSlice.actions;
