@@ -1,19 +1,23 @@
 import { useAppDispatch } from "./useTypedHooks";
 import {
   notificationActions,
-  NotificationState,
+  NotificationAction,
 } from "../state/notificationSlice";
+import { useCallback } from "react";
 
 export const useNotification = () => {
   const dispatch = useAppDispatch();
 
-  const displayNotification = (notification: NotificationState) => {
-    dispatch(notificationActions.displayNotification(notification));
-  };
+  const displayNotification = useCallback(
+    (notification: NotificationAction) => {
+      dispatch(notificationActions.displayNotification(notification));
+    },
+    [dispatch]
+  );
 
-  const clearNotification = (notification: NotificationState) => {
+  const clearNotification = useCallback(() => {
     dispatch(notificationActions.clearNotification());
-  };
+  }, [dispatch]);
 
-  return [displayNotification, clearNotification];
+  return [displayNotification, clearNotification] as const;
 };
