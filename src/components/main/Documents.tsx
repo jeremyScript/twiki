@@ -9,19 +9,15 @@ import styles from "./Documents.module.css";
 
 interface DocumentsProps {
   fetchDocument: (document: DocumentState) => void;
-  informOperationType: (type: string) => void;
   closeModal: () => void;
 }
 
-const Documents: React.FC<DocumentsProps> = ({
-  fetchDocument,
-  informOperationType,
-  closeModal,
-}) => {
+const Documents: React.FC<DocumentsProps> = ({ fetchDocument, closeModal }) => {
   const [documents, setDocuments] = useState<DocumentState[]>([]);
-  const { fetchDocuments, isPending, error } = useFireStore();
+  const { fetchDocuments } = useFireStore();
 
   const uid = useAppSelector((state) => state.user.currentUser?.uid);
+  const { pending, error } = useAppSelector((state) => state.document);
 
   useEffect(() => {
     if (uid) {
@@ -31,7 +27,6 @@ const Documents: React.FC<DocumentsProps> = ({
 
   const handleDocumentClick = (document: DocumentState) => {
     fetchDocument(document);
-    informOperationType("load");
     closeModal();
   };
 
@@ -64,9 +59,9 @@ const Documents: React.FC<DocumentsProps> = ({
       <div className={styles["load-documents"]}>
         <h2 className={styles["header"]}>Saved Documents</h2>
         <hr />
-        {isPending && <Loader />}
+        {pending && <Loader />}
         {error && <p className={styles["error"]}>{error}</p>}
-        {!isPending && !error && (
+        {!pending && !error && (
           <div className={styles["documents"]}>
             <ul className={styles["document-list"]}>{renderedDocuments}</ul>
           </div>

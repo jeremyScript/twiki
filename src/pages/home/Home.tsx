@@ -23,29 +23,13 @@ const transitionStyles = {
   exitActive: styles["sliding-exit-active"],
 };
 
-const notification: { [op: string]: { success: string; error: string } } = {
-  save: {
-    success: "Document saved",
-    error: "Document could not be saved",
-  },
-  load: {
-    success: "Document loaded",
-    error: "Document could not be loaded",
-  },
-  delete: {
-    success: "Document deleted",
-    error: "Document could not be deleted",
-  },
-};
-
 const Home = () => {
   const isLoggedIn = Boolean(useAppSelector((state) => state.user.currentUser));
   const [showDocuments, setShowDocuments] = useState(false);
-  const [operation, setOperation] = useState("");
-  const { saveDocument, fetchDocument, deleteDocument, success, error } =
-    useFireStore();
+  const { saveDocument, fetchDocument, deleteDocument } = useFireStore();
 
   const dispatch = useAppDispatch();
+
   const matchIndex = useMatch("/");
   const matchIntro = useMatch("/intro");
   const matchDemo = useMatch("/demo");
@@ -63,32 +47,16 @@ const Home = () => {
     setShowDocuments(!showDocuments);
   };
 
-  const informOperationType = (type: string) => {
-    setOperation(type);
-  };
-
   return (
     <>
       {matchIndex && <Navigate to="/intro" replace={true} />}
       <Main>
+        <Notification />
         {isLoggedIn && (
           <DocumentControls
             saveDocument={saveDocument}
             deleteDocument={deleteDocument}
             showModal={toggleModal}
-            informOperationType={informOperationType}
-          />
-        )}
-        {error && (
-          <Notification
-            type="error"
-            message={error || notification[operation]?.error}
-          />
-        )}
-        {success && (
-          <Notification
-            type="success"
-            message={notification[operation]?.success}
           />
         )}
         <PageTitle />
@@ -100,11 +68,7 @@ const Home = () => {
           classNames={transitionStyles}
           unmountOnExit
         >
-          <Documents
-            fetchDocument={fetchDocument}
-            informOperationType={informOperationType}
-            closeModal={toggleModal}
-          />
+          <Documents fetchDocument={fetchDocument} closeModal={toggleModal} />
         </CSSTransition>
       </Main>
     </>
