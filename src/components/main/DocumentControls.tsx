@@ -8,14 +8,12 @@ interface DocumentControlsProps {
   showModal: () => void;
   saveDocument: () => void;
   deleteDocument: () => void;
-  informOperationType: (type: string) => void;
 }
 
 const DocumentControls: React.FC<DocumentControlsProps> = ({
   showModal,
   saveDocument,
   deleteDocument,
-  informOperationType,
 }) => {
   const dispatch = useAppDispatch();
 
@@ -33,7 +31,6 @@ const DocumentControls: React.FC<DocumentControlsProps> = ({
       <button
         className={`${styles["control-btn"]} ${styles["save"]}`}
         onClick={() => {
-          informOperationType("save");
           saveDocument();
         }}
       >
@@ -48,7 +45,6 @@ const DocumentControls: React.FC<DocumentControlsProps> = ({
       <button
         className={`${styles["control-btn"]} ${styles["delete"]}`}
         onClick={() => {
-          informOperationType("delete");
           deleteDocument();
         }}
       >
