@@ -30,6 +30,9 @@ export interface DocumentState {
     [id: string]: Cell;
   };
   timestamp?: Timestamp;
+  pending: boolean;
+  success: string | null;
+  error: string | null;
 }
 
 const initialState: DocumentState = {
@@ -37,6 +40,9 @@ const initialState: DocumentState = {
   title: "",
   order: [],
   data: {},
+  pending: false,
+  success: null,
+  error: null,
 };
 
 const documentSlice = createSlice({
@@ -116,12 +122,7 @@ const documentSlice = createSlice({
       delete state.data[id];
     },
     clearDocument(state) {
-      return {
-        did: "",
-        title: "",
-        order: [],
-        data: {},
-      };
+      return initialState;
     },
     updateDocument(
       state,
@@ -138,6 +139,21 @@ const documentSlice = createSlice({
       state.order = order || state.order;
       state.data = data || state.data;
     },
+    isPending(state) {
+      state.pending = true;
+      state.success = null;
+      state.error = null;
+    },
+    isSuccessful(state, action: PayloadAction<string>) {
+      state.pending = false;
+      state.error = null;
+      state.success = action.payload;
+    },
+    hasError(state, action: PayloadAction<string>) {
+      state.pending = false;
+      state.error = action.payload;
+      state.success = null;
+    },
   },
 });
 
@@ -151,6 +167,9 @@ export const {
   deleteCell,
   clearDocument,
   updateDocument,
+  isPending,
+  isSuccessful,
+  hasError,
 } = documentSlice.actions;
 
 export const selectIds = (state: RootState) => state.document.order;
