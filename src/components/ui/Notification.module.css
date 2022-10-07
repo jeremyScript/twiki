@@ -1,6 +1,6 @@
 .notification {
   position: absolute;
-  right: 1.5rem;
-  top: 1.125rem;
+  right: 2.125rem;
+  top: 1.75rem;
   color: var(--main-font-color--light);
 }
