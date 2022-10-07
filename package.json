@@ -20,6 +20,7 @@
     "date-fns": "^2.29.2",
     "esbuild-wasm": "0.8.57",
     "firebase": "^9.9.2",
+    "firebase-tools": "^11.14.1",
     "localforage": "^1.10.0",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
