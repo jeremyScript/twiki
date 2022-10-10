@@ -45,8 +45,8 @@ const Preview: React.FC<PreviewProps> = ({ code, bundleStatus }) => {
       });
 
       window.addEventListener('message', (event) => {
-        if (event.origin !== "http://localhost:3000") {
-          alert('fail');
+        if (event.origin !== "https://twiki-f8461.web.app") {
+          console.error('The target and recipient origins do not match');
           return;
         };
         try {

@@ -53,7 +53,7 @@ const Example = () => {
             className="image"
             src={el["download_url"]}
             alt="random"
-            style={{ flex: "1", objectFit: "cover", maxWidth: "100%" }}
+            style={{ flex: "1", objectFit: "cover", maxHeight: "7.5rem" }}
           />
           <figcaption style={{ fontSize: "0.75rem", textAlign: "center" }}>
             by <cite>{el.author}</cite>
