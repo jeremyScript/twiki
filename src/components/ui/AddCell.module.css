@@ -4,7 +4,7 @@
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  gap: calc(10rem + 2vw);
+  gap: calc(5rem + 15vw);
   margin: 1rem;
   opacity: 0;
   transition: all 700ms ease-in;
@@ -70,4 +70,10 @@
 .add-cell button:active:after {
   bottom: 1px;
   left: 1px;
+}
+
+@media screen and (min-width: 75rem) {
+  .add-cell {
+    gap: 16.25rem;
+  }
 }

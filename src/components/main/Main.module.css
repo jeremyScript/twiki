@@ -1,9 +1,9 @@
 .main {
   position: relative;
   border-radius: 10px;
-  padding: 2rem calc(1rem + 1.5vw) 15vh calc(1rem + 1.5vw);
+  padding: 2rem 0 15vh;
   overflow: auto;
-  height: calc(100vh - 4.25rem);
+  height: 100%;
   margin-top: 3.125rem;
-  background-color: var(--main-background-color--dark);
+  overflow: visible;
 }

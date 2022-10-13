@@ -35,7 +35,7 @@ const Header: React.FC = () => {
         classNames={transitionStyles}
         unmountOnExit
       >
-        <Menu />
+        <Menu handleClick={handleMenuClick} />
       </CSSTransition>
       <NavBar />
     </header>

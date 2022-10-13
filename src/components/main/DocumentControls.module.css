@@ -14,25 +14,25 @@
   border: none;
   font-weight: 700;
   border-radius: 5px;
-  width: 3.3rem;
+  width: 3.5rem;
   height: 1.5rem;
   color: var(--main-font-color--dark);
 }
 
 .new:hover {
-  outline: 2px solid rgb(255, 85, 156);
+  border: 2px solid rgb(255, 85, 156);
 }
 
 .save:hover {
-  outline: 2px solid rgb(255, 156, 85);
+  border: 2px solid rgb(255, 156, 85);
 }
 
 .load:hover {
-  outline: 2px solid rgb(31, 193, 27);
+  border: 2px solid rgb(31, 193, 27);
 }
 
 .delete:hover {
-  outline: 2px solid #3dd1e7;
+  border: 2px solid #3dd1e7;
 }
 
 .control-btn:active {

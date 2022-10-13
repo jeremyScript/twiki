@@ -15,12 +15,14 @@ interface ResizableProps {
   children?: React.ReactNode;
 }
 
-const CENTER_FIX = 60;
+const CENTER_FIX = 16;
 
 const Resizable: React.FC<ResizableProps> = ({ id, direction, children }) => {
   const [windowWidth, setWindowWidth] = useState(
     window.innerWidth - CENTER_FIX
   );
+  const fixedWidth =
+    windowWidth >= 1200 ? 1200 : windowWidth < 500 ? 500 : windowWidth;
 
   const dispatch = useAppDispatch();
   const { ratio, height } = useAppSelector(
@@ -47,7 +49,7 @@ const Resizable: React.FC<ResizableProps> = ({ id, direction, children }) => {
   }, []);
 
   const handleResizeWidth = (e: SyntheticEvent, data: ResizeCallbackData) => {
-    dispatch(updateCellProps({ id, ratio: data.size.width / windowWidth }));
+    dispatch(updateCellProps({ id, ratio: data.size.width / fixedWidth }));
   };
 
   const handleResizeHeight = (e: SyntheticEvent, data: ResizeCallbackData) => {
@@ -60,10 +62,10 @@ const Resizable: React.FC<ResizableProps> = ({ id, direction, children }) => {
     resizableBoxProps = {
       onResizeStop: handleResizeWidth,
       className: styles["resize-horizontal"],
-      width: windowWidth * ratio!,
+      width: fixedWidth * ratio!,
       height: Infinity,
-      maxConstraints: [windowWidth * 0.75, Infinity],
-      minConstraints: [windowWidth * 0.25, Infinity],
+      maxConstraints: [fixedWidth * 0.75, Infinity],
+      minConstraints: [fixedWidth * 0.25, Infinity],
       resizeHandles: ["e"],
     };
   } else {
