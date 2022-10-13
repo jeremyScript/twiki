@@ -22,7 +22,7 @@ const Resizable: React.FC<ResizableProps> = ({ id, direction, children }) => {
     window.innerWidth - CENTER_FIX
   );
   const fixedWidth =
-    windowWidth >= 1200 ? 1200 : windowWidth < 500 ? 500 : windowWidth;
+    windowWidth >= 1200 ? 1200 : windowWidth < 400 ? 400 : windowWidth;
 
   const dispatch = useAppDispatch();
   const { ratio, height } = useAppSelector(

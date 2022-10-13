@@ -6,7 +6,7 @@
   height: 3.5rem;
   padding: 0.5rem calc(0.25rem + 2.5vw);
   z-index: 500;
-  min-width: 500px;
+  min-width: 400px;
   display: flex;
   justify-content: space-between;
   align-items: center;
