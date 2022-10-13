@@ -14,8 +14,4 @@ Simply, type in your favorite module loading syntaxes (e.g., CommonJS, ES6) in y
 
 [Sign up](https://twiki-f8461.web.app/sign-up) and [log in](https://twiki-f8461.web.app/log-in) to be able to save and load your work.
 
-## Installation
-
-If you'd like to install it on your local machine, simply clone it and run `npm install`.
-
 This site was built using esbuild, Monaco Editor, TypeScript, React, Redux and Firebase.
